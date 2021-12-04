@@ -69,7 +69,7 @@ body {
   font-family: Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 400;
   line-height: 1.5;
   color: #858796;
@@ -1453,7 +1453,7 @@ pre code {
 }
 .table thead th {
   vertical-align: bottom;
-  border-bottom: 2px solid #e3e6f0;
+  border-bottom: 2px solid #ffffff;
 }
 .table tbody + tbody {
   border-top: 2px solid #e3e6f0;
@@ -1467,7 +1467,7 @@ pre code {
 }
 .table-bordered td,
 .table-bordered th {
-  border: 1px solid #e3e6f0;
+  border: 1px solid #ffffff;
 }
 .table-bordered thead td,
 .table-bordered thead th {
@@ -4263,7 +4263,7 @@ input[type="submit"].btn-block {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
   background-color: #f8f9fc;
-  border-bottom: 1px solid #e3e6f0;
+  border-bottom: 1px solid #ffffff;
 }
 .card-header:first-child {
   border-radius: calc(0.35rem - 1px) calc(0.35rem - 1px) 0 0;
