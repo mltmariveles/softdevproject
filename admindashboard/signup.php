@@ -36,45 +36,45 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user" method="post" action="includes/signnup.inc.php">
+                            <form class="user" method="post" action="includes/signup.inc.php">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="firstName"
-                                            placeholder="First Name">
+                                             name="firstName" placeholder="First Name">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" id="lastName"
-                                            name="lastName" placeholder="Last Name">
+                                            name="lastName" placeholder="Last Name" >
                                     </div>
                                 </div>
                                  <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="middleName"
-                                            name="middleName" placeholder="Middle Name">
+                                        <input type="text" class="form-control form-control-user"
+                                            name="middleName" placeholder="Middle Name" > 
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="uid"
+                                        <input type="text" class="form-control form-control-user" 
                                             name="uid" placeholder="Username">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                             
                                     <div class="col-sm-12">
-                                        <input type="email" class="form-control form-control-user" id="emailAddress"
-                                            name="emailAddress" placeholder="Email Address">
+                                        <input type="email" class="form-control form-control-user" 
+                                            name="email" placeholder="Email Address" >
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                            id="pwdRepeat"  name="pwdRepeat" placeholder="Password">
+                                              name="pwd" placeholder="Password" >
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="repwd" name="repwd" placeholder="Repeat Password">
+                                             name="pwdRepeat" placeholder="Repeat Password" >
                                     </div>
                                 </div>
-                                	<button type="submit" name="submit" id="submit" class="btn btn-primary btn-user btn-block">Add New User</button> 
+                                	<button type="submit" name="submit" class="btn btn-primary btn-user btn-block">Add New User</button> 
                                 <hr>
                               
                             </form>
