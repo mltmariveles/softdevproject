@@ -36,41 +36,47 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" method="post" action="includes/signnup.inc.php">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                        <input type="text" class="form-control form-control-user" id="firstName"
                                             placeholder="First Name">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name">
+                                        <input type="text" class="form-control form-control-user" id="lastName"
+                                            name="lastName" placeholder="Last Name">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address">
+                                 <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="middleName"
+                                            name="middleName" placeholder="Middle Name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="uid"
+                                            name="uid" placeholder="Username">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                            
+                                    <div class="col-sm-12">
+                                        <input type="email" class="form-control form-control-user" id="emailAddress"
+                                            name="emailAddress" placeholder="Email Address">
+                                    </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                            id="pwdRepeat"  name="pwdRepeat" placeholder="Password">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                            id="repwd" name="repwd" placeholder="Repeat Password">
                                     </div>
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                    Register Account
-                                </a>
+                                	<button type="submit" name="submit" id="submit" class="btn btn-primary btn-user btn-block">Add New User</button> 
                                 <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a>
+                              
                             </form>
                             <hr>
                             <div class="text-center">
