@@ -3,8 +3,8 @@ class Login extends Dbh{
 
 protected function getUser($uid, $pwd){
 
-    $stmt = $this->connect()->prepare(' SELECT admins_pwd FROM brgylogin WHERE admins_aid = ?;' );
-    if(!$stmt->execute(array($uid,pwd))){
+    $stmt = $this->connect()->prepare('SELECT admins_pwd FROM brgylogin WHERE admins_aid = ?;' );
+    if(!$stmt->execute(array($uid,$pwd))){
 
         $stmt = null;
         header("location: index.php?error=stmtfailed");
@@ -16,8 +16,10 @@ protected function getUser($uid, $pwd){
         header("location: index.php?error=adminnotfound");
         exit();
     }
-    $pwdHashed= $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $checkPwd = password_verify($pwd, $pwdHashe[0]["admins_pwd"] );
+
+    $checkPwd = $pwd;
+    //$pwdHashed= $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //$checkPwd = password_verify($pwd, $pwdHashe[0]["admins_pwd"] );
 
 
     if($checkPwd == false){
@@ -28,7 +30,7 @@ protected function getUser($uid, $pwd){
     }
     elseif($checkPwd == true){
           $stmt = $this->connect()->prepare(' SELECT * FROM admins_pwd FROM brgylogin WHERE admins_aid = ?;' );
-           if(!$stmt->execute(array($uid,pwd))){
+           if(!$stmt->execute(array($uid,$pwd))){
 
         $stmt = null;
         header("location: index.php?error=stmtfailed");
