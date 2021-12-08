@@ -42,13 +42,13 @@
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                     </div>
-                    <form class="user" method="post" action="dash.html"> 
+                    <form class="user" method="post"> 
                       <div class="form-group">
                         <input
                           type="text"
-                          name="uid"
+                          name="username"
                           class="form-control form-control-user"
-                          id="exampleInputEmail"
+                          id="username"
                           aria-describedby="emailHelp"
                           placeholder="Username"
                         />
@@ -56,9 +56,9 @@
                       <div class="form-group">
                         <input
                           type="password"
-                          name="pwd"
+                          name="password"
                           class="form-control form-control-user"
-                          id="exampleInputPassword"
+                          id="password"
                           placeholder="Password"
                         />
                       </div>
@@ -119,5 +119,41 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+	$(function(){
+		$('#login').click(function(e){
+
+			var valid = this.form.checkValidity();
+
+			if(valid){
+				var username = $('#username').val();
+				var password = $('#password').val();
+			}
+
+			e.preventDefault(); 
+
+			$.ajax({
+				type: 'POST',
+				url: 'jslogin.php',
+				data:  {username: username, password: password},
+				success: function(data){
+					alert(data);
+					if($.trim(data) === "login Successful"){
+						setTimeout(' window.location.href =  "dash.php"', 1000);
+					}
+				},
+				error: function(data){
+					alert('there were erros while doing the operation.');
+				}
+			});
+
+		});
+	});
+</script>
   </body>
 </html>
