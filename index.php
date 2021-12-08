@@ -42,7 +42,11 @@
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                     </div>
+<<<<<<< HEAD
                     <form class="user" method="post"> 
+=======
+                  
+>>>>>>> c95f881c6bae7a7c32d8e43c4dcc322260170d02
                       <div class="form-group">
                         <input
                           type="text"
@@ -77,13 +81,13 @@
                    	<button type="button" name="button" id="login" class="btn btn-primary btn-user btn-block">Login</button> 
                       <hr />
                       <a
-                        href="dash.html"
+                        href="login.php"
                         class="btn btn-google btn-user btn-block"
                       >
                         <i class="fab fa-google fa-fw"></i> Login with Google
                       </a>
                       <a
-                        href="dash.html"
+                        href="login.php"
                         class="btn btn-facebook btn-user btn-block"
                       >
                         <i class="fab fa-facebook-f fa-fw"></i> Login with
@@ -97,7 +101,7 @@
                       >
                     </div>
                     <div class="text-center">
-                      <a class="small" href="register.html"
+                      <a class="small" href="register.php"
                         >Create an Account!</a
                       >
                     </div>
