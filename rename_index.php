@@ -42,11 +42,7 @@
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                     </div>
-<<<<<<< HEAD
                     <form class="user" method="post"> 
-=======
-                  
->>>>>>> c95f881c6bae7a7c32d8e43c4dcc322260170d02
                       <div class="form-group">
                         <input
                           type="text"
