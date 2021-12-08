@@ -1,3 +1,9 @@
+<?php
+require_once('config.php');
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,45 +42,45 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user" method="post" action="includes/signup.inc.php">
+                            <form class="user" method="post" action="registration.php">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="firstName"
-                                             name="firstName" placeholder="First Name">
+                                        <input type="text" class="form-control form-control-user" 
+                                             name="firstname" id="firstname" placeholder="First Name" required>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="lastName"
-                                            name="lastName" placeholder="Last Name" >
+                                        <input type="text" class="form-control form-control-user" 
+                                            name="lastname" id="lastname" placeholder="Last Name" required>
                                     </div>
                                 </div>
                                  <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user"
-                                            name="middleName" placeholder="Middle Name" > 
+                                            name="middlename" id="middlename" placeholder="Middle Name" required> 
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" 
-                                            name="uid" placeholder="Username">
+                                            name="username" id="username" placeholder="Username" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                             
                                     <div class="col-sm-12">
                                         <input type="email" class="form-control form-control-user" 
-                                            name="email" placeholder="Email Address" >
+                                            name="email" id="email" placeholder="Email Address"required >
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                              name="pwd" placeholder="Password" >
+                                              name="password" id="password" placeholder="Password" required>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                             name="pwdRepeat" placeholder="Repeat Password" >
+                                             name="pwdrepeat"  placeholder="Repeat Password" required>
                                     </div>
                                 </div>
-                                	<button type="submit" name="submit" class="btn btn-primary btn-user btn-block">Add New User</button> 
+                                	<button type="submit" name="submit" id="submit" class="btn btn-primary btn-user btn-block">Add New User</button> 
                                 <hr>
                               
                             </form>
@@ -103,6 +109,56 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script>
+        $(function(){
+              $('#submit').click(function(e){
+
+            var valid = this.form.checkValidity();
+            if(valid){
+            var firstname = $('#firstname').val();
+            var lastname = $('#lastname').val();
+            var middlename = $('#middlename').val();
+            var username = $('#username').val();
+            var email = $('#email').val();
+            var password = $('#password').val();
+            
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: 'process.php',
+                    data: { firstname: firstname, lastname: lastname, middlename: middlename, username: username, email: email, 
+                         password: password},
+                        success: function(data){
+                             Swal.fire({
+        'title': 'Succesful',
+        'text': data,
+        'type' : 'success'
+    })
+
+                        },
+                        error: function(data){
+                             Swal.fire({
+        'title': 'error',
+        'text': 'there were errors while saving the data',
+        'type' : 'error'
+    })
+
+                        }
+                });
+                
+           
+            }else{
+            
+            }
+   
+    });
+   
+    });
+    </script>
 </body>
 
 </html>
