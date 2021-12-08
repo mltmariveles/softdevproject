@@ -42,7 +42,7 @@
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                     </div>
-                    <form class="user" method="post" action="dash.html"> 
+                    <form class="user" method="post"> 
                       <div class="form-group">
                         <input
                           type="text"
@@ -74,7 +74,7 @@
                           >
                         </div>
                       </div>
-                   	<button type="button" name="login" id="login" class="btn btn-primary btn-user btn-block">Login</button> 
+                   	<button type="button" name="button" id="login" class="btn btn-primary btn-user btn-block">Login</button> 
                       <hr />
                       <a
                         href="dash.html"
@@ -131,11 +131,11 @@
 			var valid = this.form.checkValidity();
 
 			if(valid){
-				var answer = $('#username').val();
+				var username = $('#username').val();
 				var password = $('#password').val();
 			}
 
-			e.preventDefault();
+			e.preventDefault(); 
 
 			$.ajax({
 				type: 'POST',
