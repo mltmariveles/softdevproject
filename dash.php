@@ -65,7 +65,7 @@
 
         <!-- Resident Info -->
         <li class="nav-item">
-         <a class="nav-link" href="residentinfo.html">
+         <a class="nav-link" href="residentinfo.php">
             <i class="fas fa-users text-gray-100"></i>
             <span>Resident Information</span></a
           >
