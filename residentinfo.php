@@ -1,4 +1,45 @@
 <?php 
+
+require_once "config.php";
+
+$fname = $midname = $lname = $alias = $gender = $birthdate = $civilstatus = $voterstatus = "" ;
+
+if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_POST['sex'],$_POST['month'],$_POST['day'],$_POST['year'],$_POST['civil'],$_POST['voter']))
+{
+
+  $fname = $_POST['fname'];
+  $midname = $_POST['midname'];
+  $lname = $_POST['lname'];
+  $alias = $_POST['alias'];
+  $facemarks = $_POST['facemarks'];
+  $sex = $_POST['sex'];
+  $month= $_POST['month'];
+  $day = $_POST['day'];
+  $year = $_POST['year'];
+  $birthdate = $year.$month.$day;
+  $civilstatus = $_POST['civil'];
+  $voterstatus = $_POST['voter'];
+  $nationality = $_POST['nationality'];
+  $religion = $_POST['religion'];
+  $occupation = $_POST['occupation'];
+  $spouse_name = $_POST['spouse'];
+  $spouse_occ = $_POST['spouseocc'];
+  $birthdate = date('Y-m-d', strtotime(str_replace('-', '/', $birthdate)));
+
+
+  //SQL STATEMENT
+
+  $sql = "INSERT INTO residents (FAMNAME,FIRSTNAME,MIDNAME,ALIAS,FACEMARKS,BIRTHDATE,SEX,CIVILSTAT,NATIONALITY,RELIGION,OCCUPATION,SPOUSENAME,SPOUSEOCC,VOTERSTAT) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  $stmtinsert = $db->prepare($sql);
+  $result = $stmtinsert->execute([$lname,$fname,$midname,$alias,$facemarks,$birthdate,$sex,$civilstatus,$nationality,$religion,$occupation,$spouse_name,$spouse_occ,$voterstatus]);
+  if($result){
+    echo 'Successfully saved';
+  }else{
+    echo 'There were errors while saving the data';
+  }
+
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,9 +69,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/residentinfo.css">
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
 
     
     <link href="css/sb-admin-2.min.css" rel="stylesheet" />
@@ -180,7 +221,7 @@
                 <h1 class="h3 mb-0 text-gray-800">Barangay Tibay</h1>
               </li>
               <li class="nav-item">
-                <h1 class="h6 mb-0 text-gray-800">United States Of America</h1>
+                <h1 class="h6 mb-0 text-gray-800">Republic of the Philippines</h1>
               </li>
             </ul>
 
@@ -304,7 +345,7 @@
                             <input type="text" class="form-control" placeholder="Search&hellip;">
                         </div>
 					<div class="col-sm-4">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>New Resident</span></a>
 						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 					</div>
 				</div>
@@ -324,9 +365,15 @@
 						<th>MiddleName</th>
             <th>LastName</th>
 						<th>Alias</th>
-						<th>Gender</th>
+            <th>Facemarks</th>
 						<th>Birthdate</th>
+            <th>Sex</th>
 						<th>CivilStatus</th>
+            <th>Nationality</th>
+            <th>Religion</th>
+            <th>Occupation</th>
+            <th>Spouse Name</th>
+            <th>Spouse Occupation</th>
 						<th>VoterStatus</th>
           
 					</tr>
@@ -439,26 +486,99 @@
 		<div class="modal-content">
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method = "post">
 				<div class="modal-header">						
-					<h4 class="modal-title">Add Employee</h4>
+					<h4 class="modal-title">Add Resident</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label>Name</label>
-						<input type="text" class="form-control" required>
+						<label>Family Name</label>
+						<input type="text" name = "lname" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Email</label>
-						<input type="email" class="form-control" required>
+						<label>First Name</label>
+						<input type="text" name ="fname"class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Address</label>
-						<textarea class="form-control" required></textarea>
+						<label>Middle Name</label>
+						<input type="text" name ="midname" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Phone</label>
-						<input type="text" class="form-control" required>
-					</div>					
+						<label>Alias</label>
+						<input type="text" name = "alias"class="form-control" required>
+					</div>	
+          <div class="form-group">
+						<label>Facemarks</label>
+						<input type="text" name = "facemarks"class="form-control" required>
+					</div>	
+          <div class="form-group">
+						<label>Sex</label>
+						<select class ="form-select" name="sex" id="gender" required>
+                    <option value="Male" >Male</option>
+                    <option value="Female" >Female</option>
+                    <option value="Other">Other</option>
+            </select>
+					</div>	
+          <div class="form-group">
+						<label>Religion</label>
+						<input type="text" name = "religion"class="form-control" required>
+					</div>
+          <div class="form-group">
+						<label>Nationality</label>
+						<input type="text" name = "nationality"class="form-control" required>
+					</div>		
+          <div class="form-group">
+						<label>Occupation</label>
+						<input type="text" name = "occupation"class="form-control" required>
+					</div>
+          <div class="form-group">
+						<label>Spouse Name</label>
+						<input type="text" name = "spouse"class="form-control" required>
+					</div>
+          <div class="form-group">
+						<label>Spouse Occupation</label>
+						<input type="text" name = "spouseocc"class="form-control" required>
+					</div>			
+          <div class="form-group">
+						<label>Voter Status</label>
+            <select class ="form-select" name="voter" id="gender" required>
+                    <option value="Yes" >Yes</option>
+                    <option value="No" >No</option>
+            </select>
+					</div>	
+          <div class="form-group">
+						<label>Civil Status</label>
+            <select class ="form-select" name="civil" id="gender" required>
+                    <option value="Single" >Single</option>
+                    <option value="Married" >Married</option>
+                    <option value="Widow">Widow</option>
+            </select>
+					</div>
+          <div class="form-group">
+                <select name="month"class="form-select" id="select-month" required>
+                    <option value="" disabled selected>Month</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+    
+                  </select>    
+            </div>
+            <div class="form-group">
+                <select name ="day"class="form-select" id="select-day" required> 
+                  </select>    
+            </div>
+            <div class="form-group">
+                <select name ="year"class="form-select" id="select-year" required>
+                  </select>     
+            </div>					
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -472,14 +592,15 @@
 <div id="editEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" 
+            method="post">
 				<div class="modal-header">						
 					<h4 class="modal-title">Edit Employee</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label>Name</label>
+						<label>First Name</label>
 						<input type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
@@ -587,6 +708,8 @@
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -599,7 +722,7 @@
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
+    <script src="residentinfo.js"></script>
     <script src="js/demo/datatables-demo.js"></script>
-	<script src="residentinfo.js"></script>
   </body>
 </html>

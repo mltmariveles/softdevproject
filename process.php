@@ -13,14 +13,14 @@ if(isset($_POST)){
     $email = $_POST['email'];
     $password = $_POST['password'];
   
-   $sql = "INSERT INTO admins (firstname, lastname, middlename, username , email, password) VALUES(?,?,?,?,?,?)";
-      $stmtinsert = $db->prepare($sql);
-      $result = $stmtinsert->execute([$firstname, $lastname, $middlename, $username, $email, $password]);
-      if($result){
-        echo 'Successfully saved';
-      }else{
-        echo 'There were errors while saving the data';
-      }
+    $sql = "INSERT INTO admins (firstname, lastname, middlename, username , email, password) VALUES(?,?,?,?,?,?)";
+    $stmtinsert = $db->prepare($sql);
+    $result = $stmtinsert->execute([$firstname, $lastname, $middlename, $username, $email, $password]);
+    if($result){
+      echo 'Successfully saved';
+    }else{
+      echo 'There were errors while saving the data';
+    }
 
 
 }
