@@ -17,6 +17,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
   $day = $_POST['day'];
   $year = $_POST['year'];
   $birthdate = $year.$month.$day;
+  $birthplace = $_POST['birthplace'];
   $civilstatus = $_POST['civil'];
   $voterstatus = $_POST['voter'];
   $nationality = $_POST['nationality'];
@@ -29,7 +30,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 
   //SQL STATEMENT
 
-  $sql = "INSERT INTO residents (FAMNAME,FIRSTNAME,MIDNAME,ALIAS,FACEMARKS,BIRTHDATE,SEX,CIVILSTAT,NATIONALITY,RELIGION,OCCUPATION,SPOUSENAME,SPOUSEOCC,VOTERSTAT) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  $sql = "INSERT INTO residents (FAMNAME,FIRSTNAME,MIDNAME,ALIAS,FACEMARKS,BIRTHDATE,BIRTHPLACE,SEX,CIVILSTAT,NATIONALITY,RELIGION,OCCUPATION,SPOUSENAME,SPOUSEOCC,VOTERSTAT) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
   $stmtinsert = $db->prepare($sql);
   $result = $stmtinsert->execute([$lname,$fname,$midname,$alias,$facemarks,$birthdate,$sex,$civilstatus,$nationality,$religion,$occupation,$spouse_name,$spouse_occ,$voterstatus]);
   if($result){
@@ -509,6 +510,10 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
           <div class="form-group">
 						<label>Facemarks</label>
 						<input type="text" name = "facemarks"class="form-control" required>
+					</div>	
+          <div class="form-group">
+						<label>Birthplce</label>
+						<input type="text" name = "birthplce"class="form-control" required>
 					</div>	
           <div class="form-group">
 						<label>Sex</label>
