@@ -367,6 +367,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 						<th>Alias</th>
             <th>Facemarks</th>
 						<th>Birthdate</th>
+            <th>Birthplace</th>
             <th>Sex</th>
 						<th>CivilStatus</th>
             <th>Nationality</th>
@@ -511,6 +512,13 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 						<input type="text" name = "facemarks"class="form-control" required>
 					</div>	
           <div class="form-group">
+<<<<<<< Updated upstream
+=======
+						<label>Birthplace</label>
+						<input type="text" name = "birthplace"class="form-control" required>
+					</div>	
+          <div class="form-group">
+>>>>>>> Stashed changes
 						<label>Sex</label>
 						<select class ="form-select" name="sex" id="gender" required>
                     <option value="Male" >Male</option>
