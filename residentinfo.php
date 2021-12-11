@@ -17,7 +17,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
   $day = $_POST['day'];
   $year = $_POST['year'];
   $birthdate = $year.$month.$day;
-  $birthplace = $_POST['birthplace'];
+  $birthplace= $_POST['birhtplace'];
   $civilstatus = $_POST['civil'];
   $voterstatus = $_POST['voter'];
   $nationality = $_POST['nationality'];
@@ -32,7 +32,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 
   $sql = "INSERT INTO residents (FAMNAME,FIRSTNAME,MIDNAME,ALIAS,FACEMARKS,BIRTHDATE,BIRTHPLACE,SEX,CIVILSTAT,NATIONALITY,RELIGION,OCCUPATION,SPOUSENAME,SPOUSEOCC,VOTERSTAT) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
   $stmtinsert = $db->prepare($sql);
-  $result = $stmtinsert->execute([$lname,$fname,$midname,$alias,$facemarks,$birthdate,$sex,$civilstatus,$nationality,$religion,$occupation,$spouse_name,$spouse_occ,$voterstatus]);
+  $result = $stmtinsert->execute([$lname,$fname,$midname,$alias,$facemarks,$birthdate,$birthplace,$sex,$civilstatus,$nationality,$religion,$occupation,$spouse_name,$spouse_occ,$voterstatus]);
   if($result){
     echo 'Successfully saved';
   }else{
@@ -368,6 +368,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 						<th>Alias</th>
             <th>Facemarks</th>
 						<th>Birthdate</th>
+            <th>Birthplace</th>
             <th>Sex</th>
 						<th>CivilStatus</th>
             <th>Nationality</th>
@@ -512,10 +513,13 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 						<input type="text" name = "facemarks"class="form-control" required>
 					</div>	
           <div class="form-group">
-						<label>Birthplce</label>
-						<input type="text" name = "birthplce"class="form-control" required>
+<<<<<<< Updated upstream
+=======
+						<label>Birthplace</label>
+						<input type="text" name = "birthplace"class="form-control" required>
 					</div>	
           <div class="form-group">
+>>>>>>> Stashed changes
 						<label>Sex</label>
 						<select class ="form-select" name="sex" id="gender" required>
                     <option value="Male" >Male</option>
