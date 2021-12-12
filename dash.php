@@ -38,7 +38,7 @@
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="dash.html"
+          href="dash.php"
         >
           <div class="sidebar-brand-icon">
             <i class="fas fa-balance-scale"></i>
@@ -51,7 +51,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-          <a class="nav-link" href="dash.html">
+          <a class="nav-link" href="dash.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a
           >
@@ -65,7 +65,7 @@
 
         <!-- Resident Info -->
         <li class="nav-item">
-         <a class="nav-link" href="residentinfo.html">
+         <a class="nav-link" href="residentinfo.php">
             <i class="fas fa-users text-gray-100"></i>
             <span>Resident Information</span></a
           >
