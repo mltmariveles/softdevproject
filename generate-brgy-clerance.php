@@ -24,16 +24,7 @@ $sec = $conn->query($s)->fetch_assoc();
 
 <head>
     <?php include 'templates/header.php' ?>
-    <title>Certificate of Indigency - Barangay Management System</title>
-    <style>
-        @page {
-            size: auto;
-            /* auto is the initial value */
-
-            /* this affects the margin in the printer settings */
-            margin: 20mm 20mm 20mm 20mm;
-        }
-    </style>
+    <title>Barangay Certificate - Barangay Management System</title>
 </head>
 
 <body>
@@ -72,7 +63,7 @@ $sec = $conn->query($s)->fetch_assoc();
                             <div class="card">
                                 <div class="card-header">
                                     <div class="card-head-row">
-                                        <div class="card-title">Certificate of Indigency</div>
+                                        <div class="card-title">Barangay Certificate</div>
                                         <div class="card-tools">
                                             <button class="btn btn-info btn-border btn-round btn-sm" onclick="printDiv('printThis')">
                                                 <i class="fa fa-print"></i>
@@ -82,10 +73,7 @@ $sec = $conn->query($s)->fetch_assoc();
                                     </div>
                                 </div>
                                 <div class="card-body m-5" id="printThis">
-                                    <div class="d-flex flex-wrap justify-content-around" style="border-bottom:1px solid red">
-                                        <div class="text-center">
-                                            <img src="assets/uploads/<?= $city_logo ?>" class="img-fluid" width="100">
-                                        </div>
+                                    <div class="d-flex flex-wrap justify-content-center" style="border-bottom:1px solid red">
                                         <div class="text-center">
                                             <h3 class="mb-0">Republic of the Philippines</h3>
                                             <h3 class="mb-0">Province of <?= ucwords($province) ?></h3>
@@ -93,29 +81,51 @@ $sec = $conn->query($s)->fetch_assoc();
                                             <h1 class="fw-bold mb-0"><?= ucwords($brgy) ?></i></h2>
                                                 <p><i>Mobile No. <?= $number ?></i></p>
                                         </div>
-                                        <div class="text-center">
-                                            <img src="assets/uploads/<?= $brgy_logo ?>" class="img-fluid" width="100">
-                                        </div>
                                     </div>
                                     <div class="row mt-2">
-                                        <div class="col-md-12">
-                                            <div class="text-center mt-5">
-                                                <h1 class="mt-4 fw-bold"><u>OFFICE OF THE BARANGAY CAPTAIN</u></h1>
+                                        <div class="col-md-3">
+                                            <div class="text-center p-3" style="border:2px dotted red">
+                                                <img src="assets/uploads/<?= $brgy_logo ?>" class="img-fluid" width="200" />
+                                                <?php if (!empty($officials)) : ?>
+                                                    <?php foreach ($officials as $row) : ?>
+                                                        <h3 class="mt-3 fw-bold mb-0 text-uppercase"><?= ucwords($row['name']) ?></h3>
+                                                        <h5 class="mb-2 text-uppercase"><?= ucwords($row['position']) ?></h5>
+                                                    <?php endforeach ?>
+                                                <?php endif ?>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="text-center">
+                                                <h2 class="mt-4 fw-bold">Barangay TestBarangayName</h2>
                                             </div>
                                             <div class="text-center">
-                                                <h1 class="mt-4 fw-bold mb-5" style="font-size:38px;color:darkblue">CERTIFICATE OF INDIGENCY</h1>
+                                                <h1 class="mt-4 fw-bold mb-5">BARANGAY CLEARANCE</h1>
                                             </div>
-                                            <h2 class="mt-3" style="text-indent: 40px;">This is to certify that <span class="fw-bold" style="font-size:25px"><?= ucwords($resident['firstname'] . ' ' . $resident['middlename'] . ' ' . $resident['lastname']) ?></span>,
-                                                , of legal age, <span class="fw-bold" style="font-size:25px"><?= ucwords($resident['gender']) ?></span>, <span class="fw-bold" style="font-size:25px"><?= ucwords($resident['civilstatus']) ?></span>,
-                                                and Filipino is a resident of <span class="fw-bold" style="font-size:25px"><?= ucwords($brgy) ?></span> and that he/she is one of indigents in our barangay.</h2>
+                                            <h2 class="mt-3" style="text-indent: 40px;">This is to certify <span class="fw-bold" style="font-size:25px"><?= ucwords($resident['firstname'] . ' ' . $resident['middlename'] . ' ' . $resident['lastname']) ?></span>, that is a permanent resident of
+                                                <span class="fw-bold" style="font-size:25px"><?= ucwords($brgy) ?></span> and that he/she is known to me to be of good moral character.
+                                            </h2>
                                             <h2 class="mt-3" style="text-indent: 40px;">This certification/clearance is hereby issued to the above-named person for whatever legal purpose it may serve him/her best.</h2>
-                                            <h2 class="mt-5">Given this <span class="fw-bold" style="font-size:25px"><?= date('m/d/Y') ?></span> at the office of the Punong Barangay, <span class="fw-bold" style="font-size:25px"><?= ucwords($brgy) ?></span>
-                                                this Municipality, Philippines.</h2>
+                                            <h2 class="mt-5">Given this <span class="fw-bold" style="font-size:25px"><?= date('m/d/Y') ?>.</span></h2>
+                                            <h2 class="text-uppercase" style="margin-top:180px;">NOT VALID WITHOUT SEAL:</h2>
                                         </div>
                                         <div class="col-md-12">
-                                            <div class="p-3 text-right mr-5" style="margin-top:200px">
-                                                <h1 class="fw-bold mb-0 text-uppercase"><?= ucwords($captain['name']) ?></h1>
-                                                <p class="mr-5">PUNONG BARANGAY</p>
+                                            <div class="p-3 text-right mr-3">
+                                                <h2 class="fw-bold mb-0 text-uppercase"><?= ucwords($captain['name']) ?></h2>
+                                                <p class="mr-3">PUNONG BARANGAY</p>
+                                            </div>
+                                            <div class="p-3 text-left">
+                                                <h2 class="fw-bold mb-0 text-uppercase"><?= empty($sec['name']) ? 'Please Create Official with Secretary Position' : ucwords($sec['name']) ?></h2>
+                                                <p class="ml-2">BARANGAY SECRETARY</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 d-flex flex-wrap justify-content-end">
+                                            <div class="p-3 text-center">
+                                                <div class="border mb-3" style="height:150px;width:290px">
+                                                    <p class="mt-5 mb-0 pt-5">Right Thumb Mark</p>
+                                                </div>
+                                                <h2 class="fw-bold mb-0"><?= ucwords($resident['firstname'] . ' ' . $resident['middlename'] . ' ' . $resident['lastname']) ?></h2>
+                                                <p>Tax Payer's Signature</p>
                                             </div>
                                         </div>
                                     </div>
@@ -125,6 +135,7 @@ $sec = $conn->query($s)->fetch_assoc();
                     </div>
                 </div>
             </div>
+
             <!-- Modal -->
             <div class="modal fade" id="pment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog" role="document">
@@ -147,11 +158,11 @@ $sec = $conn->query($s)->fetch_assoc();
                                 </div>
                                 <div class="form-group">
                                     <label>Payment Details(Optional)</label>
-                                    <textarea class="form-control" placeholder="Enter Payment Details" name="details">Certificate of Indigency Payment</textarea>
+                                    <textarea class="form-control" placeholder="Enter Payment Details" name="details">Barangay Clearance Payment</textarea>
                                 </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="hidden" class="form-control" name="name" value="<?= ucwords($resident['firstname'] . ' ' . $resident['middlename'] . ' ' . $resident['lastname']) ?>">
+                            <input type="hidden" name="name" value="<?= ucwords($resident['firstname'] . ' ' . $resident['middlename'] . ' ' . $resident['lastname']) ?>">
                             <button type="button" class="btn btn-secondary" onclick="goBack()">Close</button>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
@@ -159,6 +170,7 @@ $sec = $conn->query($s)->fetch_assoc();
                     </div>
                 </div>
             </div>
+
             <!-- Main Footer -->
             <?php include 'templates/main-footer.php' ?>
             <!-- End Main Footer -->
