@@ -1,5 +1,5 @@
 <?php
-include 'server/server.php' ?>
+include 'LINK' ?>
 <?php
 $id = $_GET['id'];
 $query = "SELECT * FROM tblresident WHERE id='$id'";
