@@ -125,40 +125,7 @@ $sec = $conn->query($s)->fetch_assoc();
                     </div>
                 </div>
             </div>
-            <!-- Modal -->
-            <div class="modal fade" id="pment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Create Payment</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="POST" action="model/save_pment.php">
-                                <div class="form-group">
-                                    <label>Amount</label>
-                                    <input type="number" class="form-control" name="amount" placeholder="Enter amount to pay" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Date Issued</label>
-                                    <input type="date" class="form-control" name="date" value="<?= date('Y-m-d') ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label>Payment Details(Optional)</label>
-                                    <textarea class="form-control" placeholder="Enter Payment Details" name="details">Certificate of Indigency Payment</textarea>
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="hidden" class="form-control" name="name" value="<?= ucwords($resident['firstname'] . ' ' . $resident['middlename'] . ' ' . $resident['lastname']) ?>">
-                            <button type="button" class="btn btn-secondary" onclick="goBack()">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            
             <!-- Main Footer -->
             <?php include 'templates/main-footer.php' ?>
             <!-- End Main Footer -->
