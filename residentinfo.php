@@ -39,6 +39,8 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
     echo 'There were errors while saving the data';
   }
 
+  
+
 
 }
 ?>
@@ -586,6 +588,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
                                         echo "<th>Occupation</th>";
                                         echo "<th>Spouse Name</th>";
                                         echo "<th>Spouse Occupation</th>";
+                                        echo "<th>Action</th>";
                                         
                                     echo "</tr>";
                                 echo "</thead>";
@@ -605,11 +608,11 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
                                         echo "<td>" . $row['OCCUPATION'] . "</td>";
                                         echo "<td>" . $row['SPOUSENAME'] . "</td>";
                                         echo "<td>" . $row['SPOUSEOCC'] . "</td>";
-                                        // echo "<td>";
-                                        //     echo '<a href="#id='. $row['ID'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
-                                        //     echo '<a href="#id='. $row['ID'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
-                                        //     echo '<a href="#id='. $row['ID'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
-                                        // echo "</td>";
+                                        echo "<td>";
+                                            echo '<a href="#id='. $row['ID'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+                                            echo '<a href="#id='. $row['ID'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
+                                            echo '<a href="#deleteEmployeeModal?id='. $row['ID'] .'" data-toggle="modal"><span class="fa fa-trash"></span></a>';
+                                        echo "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";                            
@@ -1263,7 +1266,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 <div id="deleteEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form action = "delete.php" method = "post">
 				<div class="modal-header">						
 					<h4 class="modal-title">Delete Employee</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
