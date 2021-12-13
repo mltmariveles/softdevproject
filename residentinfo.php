@@ -18,7 +18,6 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
   $day = $_POST['day'];
   $year = $_POST['year'];
   $birthdate = $year.$month.$day;
-  $birthplace= $_POST['birthplace'];
   $civilstatus = $_POST['civil'];
   $voterstatus = $_POST['voter'];
   $nationality = $_POST['nationality'];
@@ -389,142 +388,6 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
                                 </button>
                             </div>
                         </div>
-					<div class="col-sm-4">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>New Resident</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
-					</div>
-				</div>
-			</div>
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
-						</th>
-						<th>Action</th>
-						<th>ResidentID</th>
-						<th>FirstName</th>
-						<th>MiddleName</th>
-            <th>LastName</th>
-						<th>Alias</th>
-            <th>Facemarks</th>
-						<th>Birthdate</th>
-            <th>Birthplace</th>
-            <th>Sex</th>
-						<th>CivilStatus</th>
-            <th>Nationality</th>
-            <th>Religion</th>
-            <th>Occupation</th>
-            <th>Spouse Name</th>
-            <th>Spouse Occupation</th>
-						<th>VoterStatus</th>
-          
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span>
-						</td>
-            <td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						
-					</tr>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox2" name="options[]" value="1">
-								<label for="checkbox2"></label>
-							</span>
-						</td>
-            <td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						
-					</tr>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox3" name="options[]" value="1">
-								<label for="checkbox3"></label>
-							</span>
-						</td>
-            <td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					
-					</tr>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox4" name="options[]" value="1">
-								<label for="checkbox4"></label>
-							</span>
-						</td>
-            <td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>					
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-            <td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						
-					</tr> 
-				</tbody>
-			</table>
-			<div class="clearfix">
-				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item active"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>        
                     </form>
                 </div>
             </li>
@@ -1286,13 +1149,6 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 						<input type="text" name = "facemarks"class="form-control" required>
 					</div>	
           <div class="form-group">
-<<<<<<< Updated upstream
-=======
-						<label>Birthplace</label>
-						<input type="text" name = "birthplace"class="form-control" required>
-					</div>	
-          <div class="form-group">
->>>>>>> Stashed changes
 						<label>Sex</label>
 						<select class ="form-select" name="sex" id="gender" required>
                     <option value="Male" >Male</option>
