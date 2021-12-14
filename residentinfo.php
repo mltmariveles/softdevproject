@@ -18,6 +18,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
   $day = $_POST['day'];
   $year = $_POST['year'];
   $birthdate = $year.$month.$day;
+  $birthplace = $_POST['birthplace'];
   $civilstatus = $_POST['civil'];
   $voterstatus = $_POST['voter'];
   $nationality = $_POST['nationality'];
@@ -30,9 +31,9 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 
   //SQL STATEMENT
 
-  $sql = "INSERT INTO residents (NAME,FAMNAME,FIRSTNAME,MIDNAME,ALIAS,FACEMARKS,BIRTHDATE,SEX,CIVILSTAT,NATIONALITY,RELIGION,OCCUPATION,SPOUSENAME,SPOUSEOCC,VOTERSTAT) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  $sql = "INSERT INTO residents (NAME,FAMNAME,FIRSTNAME,MIDNAME,ALIAS,FACEMARKS,BIRTHDATE,BIRTHPLACE,SEX,CIVILSTAT,NATIONALITY,RELIGION,OCCUPATION,SPOUSENAME,SPOUSEOCC,VOTERSTAT) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
   $stmtinsert = $db->prepare($sql);
-  $result = $stmtinsert->execute([$name,$lname,$fname,$midname,$alias,$facemarks,$birthdate,$sex,$civilstatus,$nationality,$religion,$occupation,$spouse_name,$spouse_occ,$voterstatus]);
+  $result = $stmtinsert->execute([$name,$lname,$fname,$midname,$alias,$facemarks,$birthdate,$birthplace,$sex,$civilstatus,$nationality,$religion,$occupation,$spouse_name,$spouse_occ,$voterstatus]);
   if($result){
     echo 'Successfully saved';
   }else{
@@ -99,7 +100,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="dash.html"
+          href="dash.php"
         >
           <div class="sidebar-brand-icon">
             <i class="fas fa-balance-scale"></i>
@@ -114,7 +115,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-          <a class="nav-link" href="dash.html">
+          <a class="nav-link" href="dash.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a
           >
@@ -128,7 +129,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 
         <!-- Resident Info -->
         <li class="nav-item">
-          <a class="nav-link" href="residentinfo.html">
+          <a class="nav-link" href="residentinfo.php">
             <i class="fas fa-users text-gray-100"></i>
             <span>Resident Information</span></a
           >
@@ -1216,7 +1217,11 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
             <div class="form-group">
                 <select name ="year"class="form-select" id="select-year" required>
                   </select>     
-            </div>					
+            </div>
+            <div class="form-group">
+						<label>Birthplace</label>
+						<input type="text" name = "birthplace"class="form-control" required>
+					</div>					
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
