@@ -72,24 +72,27 @@ require_once('config.php');
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
+                                      <input type="password" class="form-control form-control-user"
                                               name="password" id="password" placeholder="Password" required>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                             name="pwdrepeat"  placeholder="Repeat Password" required>
+                                             name="confirm_password" id="confirm_password"  placeholder="Repeat Password" required>
+                                             <h6 style="font-weight: bold; padding-left: 2.5em; padding-top: 1em" id='message'></h6>
                                     </div>
                                 </div>
-                                	<button type="submit" name="submit" id="submit" class="btn btn-primary btn-user btn-block">Add New User</button> 
+                                	<button type="submit" name="submit" id="submit"  class="btn btn-primary btn-user btn-block">Add New User</button> 
+                                    <a href="rename_index.php"  class="btn btn-google btn-user btn-block">Log-In</a> 
+                                    
                                 <hr>
                               
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                <h6>Barangay</h6>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
+                                <h6>Resident Information Management System</h6>
                             </div>
                         </div>
                     </div>
@@ -114,6 +117,14 @@ require_once('config.php');
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script>
+
+  $('#password, #confirm_password').on('keyup', function () {
+  if ($('#password').val() == $('#confirm_password').val()) {
+    $('#message').html('Password Matching!').css('color', 'green');
+  } else 
+    $('#message').html('Password Not Matching!').css('color', 'red');
+});
+
         $(function(){
               $('#submit').click(function(e){
 
