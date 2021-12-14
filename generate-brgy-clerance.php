@@ -1,5 +1,5 @@
 <?php
-include 'LINK' ?>
+include 'config.php' ?>
 <?php
 $id = $_GET['id'];
 $query = "SELECT * FROM tblresident WHERE id='$id'";
@@ -137,7 +137,7 @@ $sec = $conn->query($s)->fetch_assoc();
             </div>
 
             <!-- Main Footer -->
-            <?php include 'templates/main-footer.php' ?>
+            <?php include ' ' ?>
             <!-- End Main Footer -->
             <?php if (!isset($_GET['closeModal'])) { ?>
 
