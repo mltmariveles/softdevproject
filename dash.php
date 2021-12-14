@@ -297,8 +297,19 @@
                         >
                           Total Registered Population
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          300
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                     <!-- Total registration change the db credentials  -->
+                                            <?php
+                                           
+$connection = mysqli_connect("localhost","root","","adminaccounts");
+$query = "SELECT ID FROM residents ORDER BY ID";
+$query_run = mysqli_query($connection, $query);
+
+$row = mysqli_num_rows($query_run);
+
+echo'<h3>'.$row.'</h3>';
+
+?>
                         </div>
                       </div>
                       <div class="col-auto">
@@ -354,7 +365,20 @@
                          Number of Males
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          18
+                          <?php
+
+$residentmale = "SELECT * FROM residents WHERE STATUS='Male'";
+$male_run = mysqli_query($connection, $residentmale);
+
+$males = mysqli_num_rows($male_run);
+
+echo'<h3>'.$males.'</h3>';
+
+
+
+
+
+                          ?>
                         </div>
                       </div>
                       <div class="col-auto">
