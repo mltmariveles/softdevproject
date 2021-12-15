@@ -343,51 +343,51 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                         <p><b><?php echo $row["NAME"]; ?></b></p>
                     </div>
                     <div class="form-group">
-                        <label>Address</label>
+                        <label>Alias</label>
                         <p><b><?php echo $row["ALIAS"]; ?></b></p>
                     </div>
                     <div class="form-group">
-                        <label>Salary</label>
+                        <label>Facemarks</label>
                         <p><b><?php echo $row["FACEMARKS"]; ?></b></p>
                     </div>
                     <div class="form-group">
-                        <label>Salary</label>
+                        <label>Birthdate</label>
                         <p><b><?php echo $row["BIRTHDATE"]; ?></b></p>
                     </div>
                     <div class="form-group">
-                        <label>Salary</label>
+                        <label>Sex</label>
                         <p><b><?php echo $row["SEX"]; ?></b></p>
                     </div>
                     <div class="form-group">
-                        <label>Salary</label>
+                        <label>Civil Status</label>
                         <p><b><?php echo $row["CIVILSTAT"]; ?></b></p>
                     </div>
                     <div class="form-group">
-                        <label>Salary</label>
+                        <label>Nationality</label>
                         <p><b><?php echo $row["NATIONALITY"]; ?></b></p>
                     </div>
                     <div class="form-group">
-                        <label>Salary</label>
+                        <label>Religion</label>
                         <p><b><?php echo $row["RELIGION"]; ?></b></p>
                     </div>
                     <div class="form-group">
-                        <label>Salary</label>
+                        <label>Occupation</label>
                         <p><b><?php echo $row["OCCUPATION"]; ?></b></p>
                     </div>
                     <div class="form-group">
-                        <label>Salary</label>
+                        <label>Spousename</label>
                         <p><b><?php echo $row["SPOUSENAME"]; ?></b></p>
                     </div>
                     <div class="form-group">
-                        <label>Salary</label>
+                        <label>Spouse Occupation</label>
                         <p><b><?php echo $row["SPOUSEOCC"]; ?></b></p>
                     </div>
                     <div class="form-group">
-                        <label>Salary</label>
+                        <label>Voter Status</label>
                         <p><b><?php echo $row["VOTERSTAT"]; ?></b></p>
                     </div>
                     <div class="form-group">
-                        <label>Salary</label>
+                        <label>BirthPlace</label>
                         <p><b><?php echo $row["BIRTHPLACE"]; ?></b></p>
                     </div>
                     <p><a href="residentsinfo.php" class="btn btn-primary">Back</a></p>
