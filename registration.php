@@ -1,9 +1,46 @@
 <?php
-require_once('config.php');
 
+include 'configvr2.php';
+session_start();
+error_reporting(0);
+if (isset($_SESSION["user_id"])) {
+    header("Location: dash.php");
+}
+
+if(isset($_POST["submit"])){
+$firstname = mysqli_real_escape_string($conn, $_POST["firstname"]);
+$lastname = mysqli_real_escape_string($conn, $_POST["lastname"]);
+$middlename = mysqli_real_escape_string($conn, $_POST["middlename"]);
+$username = mysqli_real_escape_string($conn, $_POST["username"]);
+$email = mysqli_real_escape_string($conn, $_POST["email"]);
+$password = mysqli_real_escape_string($conn, md5($_POST["password"]));
+$confirmpassword = mysqli_real_escape_string($conn, md5($_POST["confirmpassword"]));
+
+$check_email = mysqli_num_rows(mysqli_query($conn, "SELECT email FROM admins WHERE email='$email'"));
+if($password !== $confirmpassword){
+
+    echo '<script>alert("The password did not match!")</script>';
+} elseif($check_email > 0){
+echo '<script>alert("Email Already Exist")</script>';
+}else{
+    $sql = "INSERT INTO admins (firstname, lastname, middlename, username, email, password) VALUES ('$firstname','$lastname','$middlename','$username','$email','$password')";
+    $result = mysqli_query($conn, $sql);
+    if($result){
+        $_POST["firstname"] = "";
+        $_POST["lastname"] = "";
+        $_POST["middlename"] = "";
+        $_POST["username"] = "";
+        $_POST["email"] = "";
+        $_POST["password"] = "";
+        $_POST["confirmpassword"] = "";
+        echo '<script>alert("Admin Registration Successful")</script>';
+    }else{
+        echo '<script>alert("Admin Registration Failed")</script>';
+    }
+}
+}
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,46 +79,46 @@ require_once('config.php');
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user" method="post" action="registration.php">
+                            <form class="user" method="post" action="">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" 
-                                             name="firstname" id="firstname" placeholder="First Name" required>
+                                             name="firstname"  placeholder="First Name" value="<?php echo $_POST["firstname"]; ?>" required>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" 
-                                            name="lastname" id="lastname" placeholder="Last Name" required>
+                                            name="lastname"  placeholder="Last Name" value="<?php echo $_POST["lastname"]; ?>" required>
                                     </div>
                                 </div>
                                  <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user"
-                                            name="middlename" id="middlename" placeholder="Middle Name" required> 
+                                            name="middlename"  placeholder="Middle Name" value="<?php echo $_POST["middlename"]; ?>" required> 
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" 
-                                            name="username" id="username" placeholder="Username" required>
+                                            name="username"  placeholder="Username" value="<?php echo $_POST["username"]; ?>" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                             
                                     <div class="col-sm-12">
                                         <input type="email" class="form-control form-control-user" 
-                                            name="email" id="email" placeholder="Email Address"required >
+                                            name="email"  placeholder="Email Address" value="<?php echo $_POST["email"]; ?>" required >
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                       <input type="password" class="form-control form-control-user"
-                                              name="password" id="password" placeholder="Password" required>
+                                              name="password"  placeholder="Password" value="<?php echo $_POST["password"]; ?>" required>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                             name="confirm_password" id="confirm_password"  placeholder="Repeat Password" required>
-                                             <h6 style="font-weight: bold; padding-left: 2.5em; padding-top: 1em" id='message'></h6>
+                                             name="confirmpassword"   placeholder="Repeat Password" value="<?php echo $_POST["confirmpassword"]; ?>" required>
+                                             
                                     </div>
                                 </div>
-                                	<button type="submit" name="submit" id="submit"  class="btn btn-primary btn-user btn-block">Add New User</button> 
+                                	<button type="submit" name="submit"   class="btn btn-primary btn-user btn-block">Add New User</button> 
                                     <a href="rename_index.php"  class="btn btn-google btn-user btn-block">Log-In</a> 
                                     
                                 <hr>
@@ -102,8 +139,10 @@ require_once('config.php');
 
     </div>
 
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <script src="app.js"></script>
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -116,60 +155,9 @@ require_once('config.php');
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    <script>
-
-  $('#password, #confirm_password').on('keyup', function () {
-  if ($('#password').val() == $('#confirm_password').val()) {
-    $('#message').html('Password Matching!').css('color', 'green');
-  } else 
-    $('#message').html('Password Not Matching!').css('color', 'red');
-});
-
-        $(function(){
-              $('#submit').click(function(e){
-
-            var valid = this.form.checkValidity();
-            if(valid){
-            var firstname = $('#firstname').val();
-            var lastname = $('#lastname').val();
-            var middlename = $('#middlename').val();
-            var username = $('#username').val();
-            var email = $('#email').val();
-            var password = $('#password').val();
-            
-                e.preventDefault();
-                $.ajax({
-                    type: 'POST',
-                    url: 'process.php',
-                    data: { firstname: firstname, lastname: lastname, middlename: middlename, username: username, email: email, 
-                         password: password},
-                        success: function(data){
-                             Swal.fire({
-        'title': 'Succesful',
-        'text': data,
-        'type' : 'success'
-    })
-
-                        },
-                        error: function(data){
-                             Swal.fire({
-        'title': 'error',
-        'text': 'there were errors while saving the data',
-        'type' : 'error'
-    })
-
-                        }
-                });
-                
-           
-            }else{
-            
-            }
    
-    });
-   
-    });
-    </script>
+
+  
 </body>
 
 </html>

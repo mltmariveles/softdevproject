@@ -1,3 +1,11 @@
+<?php
+include 'configvr2.php';
+session_start();
+
+echo $_SESSION["user_id"];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -367,12 +375,12 @@ echo'<h3>'.$row.'</h3>';
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                           <?php
 
-$residentmale = "SELECT * FROM residents WHERE STATUS='Male'";
-$male_run = mysqli_query($connection, $residentmale);
+//$residentmale = "SELECT STATUS FROM residents WHERE STATUS='1'";
+//$male_run = mysqli_query($connection, $residentmale);
 
-$males = mysqli_num_rows($male_run);
+//$males = mysqli_num_rows($male_run);
 
-echo'<h3>'.$males.'</h3>';
+//echo'<h3>'.$males.'</h3>';
 
 
 
@@ -570,7 +578,7 @@ echo'<h3>'.$males.'</h3>';
             >
               Cancel
             </button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="logout.php">Logout</a>
           </div>
         </div>
       </div>
