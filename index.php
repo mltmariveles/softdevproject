@@ -114,7 +114,7 @@ header("Location: dash.php");
                       >
                     </div>
                     <div class="text-center">
-                      <a class="small" href="register.php"
+                      <a class="small" href="registration.php"
                         >Create an Account!</a
                       >
                     </div>
