@@ -359,6 +359,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
                     
                     // Attempt select query execution
                     $sql = "SELECT * FROM residents";
+                    $confim = "Are you sure?";
                     if($result = $db->query($sql)){
                         if($result->rowCount() > 0){
                             echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
@@ -398,9 +399,9 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
                                         echo "<td>" . $row['SPOUSENAME'] . "</td>";
                                         echo "<td>" . $row['SPOUSEOCC'] . "</td>";
                                         echo "<td>";
-                                            echo '<a href="#id='. $row['ID'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
-                                            echo '<a href="#id='. $row['ID'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
-                                            echo '<a href="#deleteEmployeeModal" data-toggle="modal"><span class="fa fa-trash"></span></a>';
+                                            echo '<a href="read.php?id='. $row['ID'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+                                            echo '<a href="update.php?id='. $row['ID'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
+                                            echo '<a href="delete.php?id='. $row['ID'] .'" onclick="return confirm(\'Are you sure to delete this Resident?\');" title="Delete Record" data-toggle="tooltip" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                         echo "</td>";
                                     echo "</tr>";
                                 }
@@ -1006,7 +1007,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
                 <select name ="year"class="form-select" id="select-year" required>
                   </select>     
             </div>
-            <div class="form-group">
+          <div class="form-group">
 						<label>Birthplace</label>
 						<input type="text" name = "birthplace"class="form-control" required>
 					</div>					
@@ -1059,7 +1060,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 <div id="deleteEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action = "delete.php" method = "post">
+    <form action = "delete.php?id='. $row['ID'] .'" method = "post">
 				<div class="modal-header">						
 					<h4 class="modal-title">Delete Employee</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

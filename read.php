@@ -1,11 +1,63 @@
 <?php
+// Check existence of id parameter before processing further
+if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
+    // Include config file
+    require_once "config.php";
+    
+    // Prepare a select statement
+    $sql = "SELECT NAME,ALIAS,FACEMARKS,BIRTHDATE,SEX,CIVILSTAT,NATIONALITY,RELIGION,OCCUPATION,SPOUSENAME,SPOUSEOCC,VOTERSTAT,BIRTHPLACE FROM residents WHERE ID = :id";
+    
+    if($stmt = $db->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":id", $param_id);
+        
+        // Set parameters
+        $param_id = trim($_GET["id"]);
+        
+        // Attempt to execute the prepared statement
+        if($stmt->execute()){
+            if($stmt->rowCount() == 1){
+                /* Fetch result row as an associative array. Since the result set
+                contains only one row, we don't need to use while loop */
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                
+                // Retrieve individual field value
+                $name = $row["NAME"];
+                $address = $row["ALIAS"];
+                $facemarks = $row["FACEMARKS"];
+                $birthdte = $row["BIRTHDATE"];
+                $sex = $row["SEX"];
+                $civilstt = $row["CIVILSTAT"];
+                $nationality = $row["NATIONALITY"];
+                $religion = $row["RELIGION"];
+                $occupation = $row["OCCUPATION"];
+                $spousename = $row["SPOUSENAME"];
+                $spouseocc = $row["SPOUSEOCC"];
+                $voterstat = $row["VOTERSTAT"];
+                $birthplace = $row["BIRTHPLACE"];
 
-session_start();
-
-echo $_SESSION["user_id"];
-
+            } else{
+                // URL doesn't contain valid id parameter. Redirect to error page
+                header("location: error.php");
+                exit();
+            }
+            
+        } else{
+            echo "Oops! Something went wrong. Please try again later.";
+        }
+    }
+     
+    // Close statement
+    unset($stmt);
+    
+    // Close connection
+    unset($db);
+} else{
+    // URL doesn't contain id parameter. Redirect to error page
+    header("location: error.php");
+    exit();
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -165,16 +217,13 @@ echo $_SESSION["user_id"];
             >
               <i class="fa fa-bars"></i>
             </button>
-
-            <!-- Topbar Search -->
-            <ul class="nav flex-column">
+  <ul class="nav flex-column">
                <a class="navbar-brand" href="dash.php">
       <img src="img/Barangay.png" alt="" width="60" height="60">
     </a>
 </ul>
+            <!-- Topbar Search -->
              <ul class="nav flex-column">
-               
-
   <li class="nav-item">
     <h1 class="h3 mb-0 text-gray-800">Barangay Tibay</h1>
   </li>
@@ -242,7 +291,7 @@ echo $_SESSION["user_id"];
                   aria-expanded="false"
                 >
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                    >User Log-out</span
+                    >Ivana Alawi</span
                   >
                   <img
                     class="img-profile rounded-circle"
@@ -258,11 +307,11 @@ echo $_SESSION["user_id"];
                   "
                   aria-labelledby="userDropdown"
                 >
-                 
+                  
                   <div class="dropdown-divider"></div>
                   <a
                     class="dropdown-item"
-                    href="rename_index.php"
+                    href="#"
                     data-toggle="modal"
                     data-target="#logoutModal"
                   >
@@ -277,254 +326,85 @@ echo $_SESSION["user_id"];
           </nav>
           <!-- End of Topbar -->
 
-          <!-- Begin Page Content -->
-          <div class="container-fluid">
-            <!-- Page Heading -->
-            <div
-              class="d-sm-flex align-items-center justify-content-between mb-4"
-            >
-              <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-           
-            </div>
+          <!-- Content here -->
 
-            <!-- Content Row -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+              <h1 class="h3 mb-0 text-gray-800">View Record</h1>
+           </div>
+          <!-- content here -->
+
+    <div class="wrapper">
+        <div>
             <div class="row">
-              <!-- Total Registered Population -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="
-                            text-xs
-                            font-weight-bold
-                            text-primary text-uppercase
-                            mb-1
-                          "
-                        >
-                          Total Registered Population
-                        </div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">
-                     <!-- Total registration change the db credentials  -->
-                                            <?php
-                                           
-$connection = mysqli_connect("localhost","root","h6HGDZsrQLJC","finals");
-$query = "SELECT ID FROM residents ORDER BY ID";
-$query_run = mysqli_query($connection, $query);
-
-$row = mysqli_num_rows($query_run);
-
-echo'<h3>'.$row.'</h3>';
-
-?>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-house-user fa-2x text-gray-500"></i>
-                      </div>
-                    </div>
-                  </div>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Basic Card Example</h6>
                 </div>
-              </div>
-
-              <!--Registered Voters -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="
-                            text-xs
-                            font-weight-bold
-                            text-success text-uppercase
-                            mb-1
-                          "
-                        >
-                         Registered Voters
+                <div class="card-body">
+                    <div class="col-12">
+                        <h1 class="mt-5 mb-3">View Record</h1>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <p><b><?php echo $row["NAME"]; ?></b></p>
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          60
+                        <div class="form-group">
+                            <label>Alias</label>
+                            <p><b><?php echo $row["ALIAS"]; ?></b></p>
                         </div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-pen fa-2x text-gray-500"></i>
-                      </div>
+                        <div class="form-group">
+                            <label>Facemarks</label>
+                            <p><b><?php echo $row["FACEMARKS"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Birthdate</label>
+                            <p><b><?php echo $row["BIRTHDATE"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Sex</label>
+                            <p><b><?php echo $row["SEX"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Civil Status</label>
+                            <p><b><?php echo $row["CIVILSTAT"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Nationality</label>
+                            <p><b><?php echo $row["NATIONALITY"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Religion</label>
+                            <p><b><?php echo $row["RELIGION"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Occupation</label>
+                            <p><b><?php echo $row["OCCUPATION"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Spousename</label>
+                            <p><b><?php echo $row["SPOUSENAME"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Spouse Occupation</label>
+                            <p><b><?php echo $row["SPOUSEOCC"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Voter Status</label>
+                            <p><b><?php echo $row["VOTERSTAT"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>BirthPlace</label>
+                            <p><b><?php echo $row["BIRTHPLACE"]; ?></b></p>
+                        </div>   
                     </div>
-                  </div>
-                </div>
-              </div>
-
-              <!--   Number of Males -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-info shadow h-100 py-2">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="
-                            text-xs
-                            font-weight-bold
-                            text-danger text-uppercase
-                            mb-1
-                          "
-                        >
-                         Number of Males
-                        </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          <?php
-
-//$residentmale = "SELECT STATUS FROM residents WHERE STATUS='1'";
-//$male_run = mysqli_query($connection, $residentmale);
-
-//$males = mysqli_num_rows($male_run);
-
-//echo'<h3>'.$males.'</h3>';
-
-
-
-
-
-                          ?>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-male fa-2x text-gray-500"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!--   Number of Females -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="
-                            text-xs
-                            font-weight-bold
-                            text-warning text-uppercase
-                            mb-1
-                          "
-                        >
-                         Number of Females
-                        </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          18
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-female fa-2x text-gray-500"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
-
-            <!-- Content Row -->
-
-            <div class="row">
-              <!-- Area Chart -->
-              <div class="col-xl-8 col-lg-7">
-                <div class="card shadow mb-4">
-                  <!-- Card Header - Dropdown -->
-                  <div
-                    class="
-                      card-header
-                      py-3
-                      d-flex
-                      flex-row
-                      align-items-center
-                      justify-content-between
-                    "
-                  >
-                    <h6 class="m-0 font-weight-bold text-primary">
-                     Current Barangay Officials
-                    </h6>
-                   
-                  </div>
-                  <!-- Card Body -->
-                  <div class="card-body">
-                          <div class="table-responsive">
-                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                              <thead>
-                                <tr>
-                                 <th>Full Name</th>
-                                <th>Office Commitee</th>   
-                                <th>Brangay Position</th>                                        
-                                 </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                            <td>Jowel Caballero</td>
-                        <td>Program 1</td>    
-                         <td>Supreme Leader</td>    
-                        </tr>
-                              <tr>
-                            <td>Josh Barribal</td>
-                        <td>Program 2</td>    
-                         <td>Supreme General</td>    
-                        </tr>
-                              <tr>
-                            <td>Mark Lester Mariveles</td>
-                        <td>Program 3</td>    
-                         <td>Henchman</td>    
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                </div>
-              </div>
-
-              <!-- Pie Chart -->
-              <div class="col-xl-4 col-lg-5">
-                <div class="card shadow mb-4">
-                  <!-- Card Header - Dropdown -->
-                  <div
-                    class="
-                      card-header
-                      py-3
-                      d-flex
-                      flex-row
-                      align-items-center
-                      justify-content-between
-                    "
-                  >
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      Puroks/Areas
-                    </h6>
-                  </div>
-                  <!-- Card Body -->
-                  <div class="card-body">
-                          <div class="table-responsive">
-                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                              <thead>
-                                <tr>
-                                 <th>Area</th>
-                                <th>Area Count</th>                                          
-                                 </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                            <td>Area1</td>
-                        <td>1</td>    
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-          <!-- /.container-fluid -->
+                
+                
+            </div>   
+            <p><a href="residentinfo.php" class="btn btn-primary">Back</a></p>     
         </div>
-        <!-- End of Main Content -->
+    </div>
+          
 
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
@@ -578,7 +458,7 @@ echo'<h3>'.$row.'</h3>';
             >
               Cancel
             </button>
-            <a class="btn btn-primary" href="logout.php">Logout</a>
+            <a class="btn btn-primary" href="login.html">Logout</a>
           </div>
         </div>
       </div>
@@ -602,3 +482,4 @@ echo'<h3>'.$row.'</h3>';
     <script src="js/demo/chart-pie-demo.js"></script>
   </body>
 </html>
+
