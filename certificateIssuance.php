@@ -275,6 +275,61 @@
            
             </div>
           <!-- content here -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Residents Information Table</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                <?php
+                    // Include config file
+                    require_once "config.php";
+                    
+                    // Attempt select query execution
+                    $sql = "SELECT * FROM residents";
+                    $confim = "Are you sure?";
+                    if($result = $db->query($sql)){
+                        if($result->rowCount() > 0){
+                            echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
+                                echo "<thead>";
+                                    echo "<tr>";
+                                        echo "<th>ID</th>";
+                                        echo "<th>Name</th>";
+                                        echo "<th>Action</th>";
+                                        
+                                    echo "</tr>";
+                                echo "</thead>";
+                                echo "<tbody>";
+                                while($row = $result->fetch()){
+                                    echo "<tr>";
+                                        echo "<td>" . $row['ID'] . "</td>";
+                                        echo "<td>" . $row['NAME'] . "</td>";
+                                        echo "<td>";
+                                            echo '<a href="#">View Certificate</a>'; 
+                                        echo "</td>";
+                                    echo "</tr>";
+                                }
+                                echo "</tbody>";                            
+                            echo "</table>";
+                            // Free result set
+                            unset($result);
+                        } else{
+                            echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+                        }
+                    } else{
+                        echo "Oops! Something went wrong. Please try again later.";
+                    }
+                    
+                    // Close connection
+                    unset($pdo);
+                    ?>
+                    
+                    </table>
+                </div>
+            </div>
+        </div>
+
+          
           
 
         <!-- Footer -->
