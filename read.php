@@ -333,66 +333,75 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
            </div>
           <!-- content here -->
 
-          <div class="wrapper">
-        <div class="container-fluid">
+    <div class="wrapper">
+        <div>
             <div class="row">
-                <div class="col-md-12">
-                    <h1 class="mt-5 mb-3">View Record</h1>
-                    <div class="form-group">
-                        <label>Name</label>
-                        <p><b><?php echo $row["NAME"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Alias</label>
-                        <p><b><?php echo $row["ALIAS"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Facemarks</label>
-                        <p><b><?php echo $row["FACEMARKS"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Birthdate</label>
-                        <p><b><?php echo $row["BIRTHDATE"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Sex</label>
-                        <p><b><?php echo $row["SEX"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Civil Status</label>
-                        <p><b><?php echo $row["CIVILSTAT"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Nationality</label>
-                        <p><b><?php echo $row["NATIONALITY"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Religion</label>
-                        <p><b><?php echo $row["RELIGION"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Occupation</label>
-                        <p><b><?php echo $row["OCCUPATION"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Spousename</label>
-                        <p><b><?php echo $row["SPOUSENAME"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Spouse Occupation</label>
-                        <p><b><?php echo $row["SPOUSEOCC"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Voter Status</label>
-                        <p><b><?php echo $row["VOTERSTAT"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>BirthPlace</label>
-                        <p><b><?php echo $row["BIRTHPLACE"]; ?></b></p>
-                    </div>
-                    <p><a href="residentinfo.php" class="btn btn-primary">Back</a></p>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Basic Card Example</h6>
                 </div>
-            </div>        
+                <div class="card-body">
+                    <div class="col-12">
+                        <h1 class="mt-5 mb-3">View Record</h1>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <p><b><?php echo $row["NAME"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Alias</label>
+                            <p><b><?php echo $row["ALIAS"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Facemarks</label>
+                            <p><b><?php echo $row["FACEMARKS"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Birthdate</label>
+                            <p><b><?php echo $row["BIRTHDATE"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Sex</label>
+                            <p><b><?php echo $row["SEX"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Civil Status</label>
+                            <p><b><?php echo $row["CIVILSTAT"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Nationality</label>
+                            <p><b><?php echo $row["NATIONALITY"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Religion</label>
+                            <p><b><?php echo $row["RELIGION"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Occupation</label>
+                            <p><b><?php echo $row["OCCUPATION"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Spousename</label>
+                            <p><b><?php echo $row["SPOUSENAME"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Spouse Occupation</label>
+                            <p><b><?php echo $row["SPOUSEOCC"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Voter Status</label>
+                            <p><b><?php echo $row["VOTERSTAT"]; ?></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>BirthPlace</label>
+                            <p><b><?php echo $row["BIRTHPLACE"]; ?></b></p>
+                        </div>   
+                    </div>
+            </div>
+            </div>
+                
+                
+            </div>   
+            <p><a href="residentinfo.php" class="btn btn-primary">Back</a></p>     
         </div>
     </div>
           
