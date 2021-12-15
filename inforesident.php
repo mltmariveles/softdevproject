@@ -1065,8 +1065,9 @@ if (isset($_POST['fname'], $_POST['midname'], $_POST['lname'], $_POST['alias'], 
         <script src="js/demo/datatables-demo.js"></script>
 </body>
 
-<body>
+<!--DITO MAG SISIMULA GENARATE CODE-->
 
+<body>
     <body id="page-top">
         <div class="wrapper">
             <div class="main-panel">
@@ -1198,8 +1199,7 @@ if (isset($_POST['fname'], $_POST['midname'], $_POST['lname'], $_POST['alias'], 
                 document.body.innerHTML = originalContents;
             }
         </script>
-
-
     </body>
+    <!--- HANGGANG DITO LANG --->
 
 </html>
