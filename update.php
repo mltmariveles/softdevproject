@@ -157,16 +157,13 @@
             >
               <i class="fa fa-bars"></i>
             </button>
-
-            <!-- Topbar Search -->
-            <ul class="nav flex-column">
+  <ul class="nav flex-column">
                <a class="navbar-brand" href="dash.php">
       <img src="img/Barangay.png" alt="" width="60" height="60">
     </a>
 </ul>
+            <!-- Topbar Search -->
              <ul class="nav flex-column">
-               
-
   <li class="nav-item">
     <h1 class="h3 mb-0 text-gray-800">Barangay Tibay</h1>
   </li>
@@ -234,7 +231,7 @@
                   aria-expanded="false"
                 >
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                    >User Log-out</span
+                    >Ivana Alawi</span
                   >
                   <img
                     class="img-profile rounded-circle"
@@ -250,11 +247,11 @@
                   "
                   aria-labelledby="userDropdown"
                 >
-                 
+                  
                   <div class="dropdown-divider"></div>
                   <a
                     class="dropdown-item"
-                    href="rename_index.php"
+                    href="#"
                     data-toggle="modal"
                     data-target="#logoutModal"
                   >
@@ -269,254 +266,116 @@
           </nav>
           <!-- End of Topbar -->
 
-          <!-- Begin Page Content -->
-          <div class="container-fluid">
-            <!-- Page Heading -->
-            <div
-              class="d-sm-flex align-items-center justify-content-between mb-4"
-            >
-              <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-           
-            </div>
+          <!-- Content here -->
 
-            <!-- Content Row -->
-            <div class="row">
-              <!-- Total Registered Population -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="
-                            text-xs
-                            font-weight-bold
-                            text-primary text-uppercase
-                            mb-1
-                          "
-                        >
-                          Total Registered Population
-                        </div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">
-                     <!-- Total registration change the db credentials  -->
-                                            <?php
-                                           
-$connection = mysqli_connect("localhost","root","h6HGDZsrQLJC","finals");
-$query = "SELECT ID FROM residents ORDER BY ID";
-$query_run = mysqli_query($connection, $query);
-
-$row = mysqli_num_rows($query_run);
-
-echo'<h3>'.$row.'</h3>';
-
-?>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-house-user fa-2x text-gray-500"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!--Registered Voters -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="
-                            text-xs
-                            font-weight-bold
-                            text-success text-uppercase
-                            mb-1
-                          "
-                        >
-                         Registered Voters
-                        </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          60
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-pen fa-2x text-gray-500"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!--   Number of Males -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-info shadow h-100 py-2">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="
-                            text-xs
-                            font-weight-bold
-                            text-danger text-uppercase
-                            mb-1
-                          "
-                        >
-                         Number of Males
-                        </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          <?php
-
-$residentmale = "SELECT * FROM residents WHERE STATUS='Male'";
-$male_run = mysqli_query($connection, $residentmale);
-
-$males = mysqli_num_rows($male_run);
-
-echo'<h3>'.$males.'</h3>';
-
-
-
-
-
-                          ?>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-male fa-2x text-gray-500"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!--   Number of Females -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="
-                            text-xs
-                            font-weight-bold
-                            text-warning text-uppercase
-                            mb-1
-                          "
-                        >
-                         Number of Females
-                        </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          18
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-female fa-2x text-gray-500"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Content Row -->
-
-            <div class="row">
-              <!-- Area Chart -->
-              <div class="col-xl-8 col-lg-7">
-                <div class="card shadow mb-4">
-                  <!-- Card Header - Dropdown -->
-                  <div
-                    class="
-                      card-header
-                      py-3
-                      d-flex
-                      flex-row
-                      align-items-center
-                      justify-content-between
-                    "
-                  >
-                    <h6 class="m-0 font-weight-bold text-primary">
-                     Current Barangay Officials
-                    </h6>
-                   
-                  </div>
-                  <!-- Card Body -->
-                  <div class="card-body">
-                          <div class="table-responsive">
-                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                              <thead>
-                                <tr>
-                                 <th>Full Name</th>
-                                <th>Office Commitee</th>   
-                                <th>Brangay Position</th>                                        
-                                 </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                            <td>Jowel Caballero</td>
-                        <td>Program 1</td>    
-                         <td>Supreme Leader</td>    
-                        </tr>
-                              <tr>
-                            <td>Josh Barribal</td>
-                        <td>Program 2</td>    
-                         <td>Supreme General</td>    
-                        </tr>
-                              <tr>
-                            <td>Mark Lester Mariveles</td>
-                        <td>Program 3</td>    
-                         <td>Henchman</td>    
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                </div>
-              </div>
-
-              <!-- Pie Chart -->
-              <div class="col-xl-4 col-lg-5">
-                <div class="card shadow mb-4">
-                  <!-- Card Header - Dropdown -->
-                  <div
-                    class="
-                      card-header
-                      py-3
-                      d-flex
-                      flex-row
-                      align-items-center
-                      justify-content-between
-                    "
-                  >
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      Puroks/Areas
-                    </h6>
-                  </div>
-                  <!-- Card Body -->
-                  <div class="card-body">
-                          <div class="table-responsive">
-                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                              <thead>
-                                <tr>
-                                 <th>Area</th>
-                                <th>Area Count</th>                                          
-                                 </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                            <td>Area1</td>
-                        <td>1</td>    
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- /.container-fluid -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+              <h1 class="h3 mb-0 text-gray-800">Update Resident</h1>    
         </div>
-        <!-- End of Main Content -->
+          <!-- content here -->
+
+        <div class="wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Please edit the input values and submit to update the employee record.</p>
+                        <div class="form-group">
+						<label>Family Name</label>
+						<input type="text" name = "lname" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>First Name</label>
+						<input type="text" name ="fname"class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>Middle Name</label>
+						<input type="text" name ="midname" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>Alias</label>
+						<input type="text" name = "alias"class="form-control" required>
+					</div>	
+          <div class="form-group">
+						<label>Facemarks</label>
+						<input type="text" name = "facemarks"class="form-control" required>
+					</div>	
+          <div class="form-group">
+						<label>Sex</label>
+						<select class ="form-select" name="sex" id="gender" required>
+                    <option value="Male" >Male</option>
+                    <option value="Female" >Female</option>
+                    <option value="Other">Other</option>
+            </select>
+					</div>	
+          <div class="form-group">
+						<label>Religion</label>
+						<input type="text" name = "religion"class="form-control" required>
+					</div>
+          <div class="form-group">
+						<label>Nationality</label>
+						<input type="text" name = "nationality"class="form-control" required>
+					</div>		
+          <div class="form-group">
+						<label>Occupation</label>
+						<input type="text" name = "occupation"class="form-control" required>
+					</div>
+          <div class="form-group">
+						<label>Spouse Name</label>
+						<input type="text" name = "spouse"class="form-control" required>
+					</div>
+          <div class="form-group">
+						<label>Spouse Occupation</label>
+						<input type="text" name = "spouseocc"class="form-control" required>
+					</div>			
+          <div class="form-group">
+						<label>Voter Status</label>
+            <select class ="form-select" name="voter" id="gender" required>
+                    <option value="Yes" >Yes</option>
+                    <option value="No" >No</option>
+            </select>
+					</div>	
+          <div class="form-group">
+						<label>Civil Status</label>
+            <select class ="form-select" name="civil" id="gender" required>
+                    <option value="Single" >Single</option>
+                    <option value="Married" >Married</option>
+                    <option value="Widow">Widow</option>
+            </select>
+					</div>
+          <div class="form-group">
+                <select name="month"class="form-select" id="select-month" required>
+                    <option value="" disabled selected>Month</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+    
+                  </select>    
+            </div>
+            <div class="form-group">
+                <select name ="day"class="form-select" id="select-day" required> 
+                  </select>    
+            </div>
+            <div class="form-group">
+                <select name ="year"class="form-select" id="select-year" required>
+                  </select>     
+            </div>
+          <div class="form-group">
+						<label>Birthplace</label>
+						<input type="text" name = "birthplace"class="form-control" required>
+					</div>
+                    </div>
+                </div>        
+            </div>
+        </div>
+          
 
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
