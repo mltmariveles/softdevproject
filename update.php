@@ -27,7 +27,7 @@ $stmt->bindParam(":occupation", $occupation);
 $stmt->bindParam(":spouse", $pspouse);
 $stmt->bindParam(":spouseocc", $spouseocc);
 $stmt->bindParam(":voter", $voter);
-$stmt->bindParam(":birthplace", $birthplace;
+$stmt->bindParam(":birthplace", $birthplace);
 ?>
 
 
