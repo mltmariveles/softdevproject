@@ -3,9 +3,13 @@
 include 'configvr2.php';
 session_start();
 error_reporting(0);
-if (isset($_SESSION["user_id"])) {
-    header("Location: dash.php");
+
+if (!isset($_SESSION["user_id"])) {
+    header("Location: rename_index.php");
 }
+
+
+
 
 if(isset($_POST["submit"])){
 $firstname = mysqli_real_escape_string($conn, $_POST["firstname"]);

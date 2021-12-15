@@ -1,5 +1,10 @@
 <?php 
+session_start();
+if (!isset($_SESSION["user_id"])) {
+    header("Location: rename_index.php");
+}
 
+include 'configvr2.php';
 require_once "config.php";
 
 $fname = $midname = $lname = $alias = $gender = $birthdate = $civilstatus = $voterstatus = "" ;
@@ -137,7 +142,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 
         <!-- Blotter Records -->
         <li class="nav-item">
-          <a class="nav-link" href="blotterrecords.html">
+          <a class="nav-link" href="blotterrecords.php">
             <i class="fas fa-clipboard text-gray-100"></i>
             <span>Blotter Records</span></a
           >
@@ -159,7 +164,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 
         <!-- Certificate -->
         <li class="nav-item">
-          <a class="nav-link" href="certificateIssuance.html">
+          <a class="nav-link" href="certificateIssuance.php">
             <i class="fas fa-stamp text-gray-100"></i>
             <span>Certificate of Issuance</span></a
           >
@@ -180,7 +185,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="barangayconfig.html">
+          <a class="nav-link" href="barangayconfig.php">
             <i class="fas fa-cogs text-gray-100"></i>
             <span>Barangay Config</span></a
           >

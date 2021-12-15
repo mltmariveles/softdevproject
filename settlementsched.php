@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (!isset($_SESSION["user_id"])) {
+    header("Location: rename_index.php");
+}
+
+include 'configvr2.php';
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,7 +21,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Admin Dashboard</title>
+    <title>Admin Dashboards</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -73,7 +84,7 @@
 
         <!-- Blotter Records -->
         <li class="nav-item">
-          <a class="nav-link" href="blotterrecords.html">
+          <a class="nav-link" href="blotterrecords.php">
             <i class="fas fa-clipboard text-gray-100"></i>
             <span>Blotter Records</span></a
           >
@@ -95,7 +106,7 @@
 
         <!-- Certificate -->
         <li class="nav-item">
-          <a class="nav-link" href="certificateIssuance.html">
+          <a class="nav-link" href="certificateIssuance.php">
             <i class="fas fa-stamp text-gray-100"></i>
             <span>Certificate of Issuance</span></a
           >
@@ -116,7 +127,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="barangayconfig.html">
+          <a class="nav-link" href="barangayconfig.php">
             <i class="fas fa-cogs text-gray-100"></i>
             <span>Barangay Config</span></a
           >
@@ -231,7 +242,7 @@
                   aria-expanded="false"
                 >
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                    >Ivana Alawi</span
+                    >User Log-out</span
                   >
                   <img
                     class="img-profile rounded-circle"
@@ -247,7 +258,7 @@
                   "
                   aria-labelledby="userDropdown"
                 >
-                  
+                 
                   <div class="dropdown-divider"></div>
                   <a
                     class="dropdown-item"
@@ -267,13 +278,13 @@
           <!-- End of Topbar -->
 
           <!-- Content here -->
- <div
+
+         <div
               class="d-sm-flex align-items-center justify-content-between mb-4"
             >
-              <h1 class="h3 mb-0 text-gray-800">Barangay Config</h1>
+              <h1 class="h3 mb-0 text-gray-800">Settlement Schedule</h1>
            
             </div>
-     
           <!-- content here -->
           
 

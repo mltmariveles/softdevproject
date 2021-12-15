@@ -1,4 +1,14 @@
 <?php
+
+session_start();
+if (!isset($_SESSION["user_id"])) {
+    header("Location: rename_index.php");
+}
+
+include 'configvr2.php';
+
+
+
 require_once "config.php";
 $id = (int)$_GET['id'];
 
