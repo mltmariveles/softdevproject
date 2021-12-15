@@ -400,7 +400,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
                                         echo "<td>";
                                             echo '<a href="#id='. $row['ID'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                             echo '<a href="#id='. $row['ID'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
-                                            echo '<a href="#deleteEmployeeModal" data-toggle="modal"><span class="fa fa-trash"></span></a>';
+                                            echo '<a href="delete.php?id='. $row['ID'] .'" title="Delete Record" data-toggle="tooltip" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                         echo "</td>";
                                     echo "</tr>";
                                 }
@@ -1059,7 +1059,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 <div id="deleteEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action = "delete.php" method = "post">
+    <form action = "delete.php?id='. $row['ID'] .'" method = "post">
 				<div class="modal-header">						
 					<h4 class="modal-title">Delete Employee</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
