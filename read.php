@@ -1,3 +1,63 @@
+<?php
+// Check existence of id parameter before processing further
+if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
+    // Include config file
+    require_once "config.php";
+    
+    // Prepare a select statement
+    $sql = "SELECT NAME,ALIAS,FACEMARKS,BIRTHDATE,SEX,CIVILSTAT,NATIONALITY,RELIGION,OCCUPATION,SPOUSENAME,SPOUSEOCC,VOTERSTAT,BIRTHPLACE FROM residents WHERE ID = :id";
+    
+    if($stmt = $db->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":id", $param_id);
+        
+        // Set parameters
+        $param_id = trim($_GET["id"]);
+        
+        // Attempt to execute the prepared statement
+        if($stmt->execute()){
+            if($stmt->rowCount() == 1){
+                /* Fetch result row as an associative array. Since the result set
+                contains only one row, we don't need to use while loop */
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                
+                // Retrieve individual field value
+                $name = $row["NAME"];
+                $address = $row["ALIAS"];
+                $facemarks = $row["FACEMARKS"];
+                $birthdte = $row["BIRTHDATE"];
+                $sex = $row["SEX"];
+                $civilstt = $row["CIVILSTAT"];
+                $nationality = $row["NATIONALITY"];
+                $religion = $row["RELIGION"];
+                $occupation = $row["OCCUPATION"];
+                $spousename = $row["SPOUSENAME"];
+                $spouseocc = $row["SPOUSEOCC"];
+                $voterstat = $row["VOTERSTAT"];
+                $birthplace = $row["BIRTHPLACE"];
+
+            } else{
+                // URL doesn't contain valid id parameter. Redirect to error page
+                header("location: error.php");
+                exit();
+            }
+            
+        } else{
+            echo "Oops! Something went wrong. Please try again later.";
+        }
+    }
+     
+    // Close statement
+    unset($stmt);
+    
+    // Close connection
+    unset($db);
+} else{
+    // URL doesn't contain id parameter. Redirect to error page
+    header("location: error.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,7 +70,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Admin Dashboards</title>
+    <title>Admin Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -231,7 +291,7 @@
                   aria-expanded="false"
                 >
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                    >User Log-out</span
+                    >Ivana Alawi</span
                   >
                   <img
                     class="img-profile rounded-circle"
@@ -247,7 +307,7 @@
                   "
                   aria-labelledby="userDropdown"
                 >
-                 
+                  
                   <div class="dropdown-divider"></div>
                   <a
                     class="dropdown-item"
@@ -268,13 +328,92 @@
 
           <!-- Content here -->
 
-         <div
-              class="d-sm-flex align-items-center justify-content-between mb-4"
-            >
-              <h1 class="h3 mb-0 text-gray-800">Settlement Schedule</h1>
-           
-            </div>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+              <h1 class="h3 mb-0 text-gray-800">View Record</h1>
+           </div>
           <!-- content here -->
+
+    <div class="wrapper">
+        <div>
+            <div class="row justify-content-center">
+            <div class="card shadow mb-4 col-sm-5 mx-5">
+                
+                <div class="card-body">
+                    <div class="col-12">
+                        <h1 class="mt-5 mb-3">View Record</h1>
+                        <div class="form-group row">
+                          <div class="col-sm-4">
+                            <label>Name</label>
+                            <p><b><?php echo $row["NAME"]; ?></b></p>
+</div>
+                            <div class="col-sm-4">
+                            <label>Alias</label>
+                            <p><b><?php echo $row["ALIAS"]; ?></b></p>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Facemarks</label>
+                            <p><b><?php echo $row["FACEMARKS"]; ?></b></p>
+                        </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                           <div class="col-sm-4">
+                            <label>Birthdate</label>
+                            <p><b><?php echo $row["BIRTHDATE"]; ?></b></p>
+</div>
+                             <div class="col-sm-4">
+                            <label>Sex</label>
+                            <p><b><?php echo $row["SEX"]; ?></b></p>
+                        </div>
+                         <div class="col-sm-4">
+                            <label>Civil Status</label>
+                            <p><b><?php echo $row["CIVILSTAT"]; ?></b></p>
+                        </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                          <div class="col-sm-4">
+                            <label>Nationality</label>
+                            <p><b><?php echo $row["NATIONALITY"]; ?></b></p>
+</div>
+                              <div class="col-sm-4">
+                            <label>Religion</label>
+                            <p><b><?php echo $row["RELIGION"]; ?></b></p>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Occupation</label>
+                            <p><b><?php echo $row["OCCUPATION"]; ?></b></p>
+                        </div>
+                        </div>
+                      
+                        <div class="form-group row">
+                          <div class="col-sm-4">
+                            <label>Spousename</label>
+                            <p><b><?php echo $row["SPOUSENAME"]; ?></b></p>
+</div>
+                           <div class="col-sm-4">
+                            <label>Spouse Occupation</label>
+                            <p><b><?php echo $row["SPOUSEOCC"]; ?></b></p>
+                        </div>
+                       <div class="col-sm-4">
+                            <label>Voter Status</label>
+                            <p><b><?php echo $row["VOTERSTAT"]; ?></b></p>
+                        </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>BirthPlace</label>
+                            <p><b><?php echo $row["BIRTHPLACE"]; ?></b></p>
+                        </div>   
+                    </div>
+            </div>
+            </div>
+                
+                
+            </div>   
+            <p><a href="residentinfo.php" class="btn btn-primary">Back</a></p>     
+        </div>
+    </div>
           
 
         <!-- Footer -->
@@ -329,7 +468,7 @@
             >
               Cancel
             </button>
-            <a class="btn btn-primary" href="logout.php">Logout</a>
+            <a class="btn btn-primary" href="login.html">Logout</a>
           </div>
         </div>
       </div>
@@ -353,3 +492,4 @@
     <script src="js/demo/chart-pie-demo.js"></script>
   </body>
 </html>
+

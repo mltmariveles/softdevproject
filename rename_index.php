@@ -1,3 +1,30 @@
+<<?php
+
+include 'configvr2.php';
+session_start();
+error_reporting(0);
+if (isset($_SESSION["user_id"])) {
+    header("Location: dash.php");
+}
+
+if(isset($_POST["login"])){
+$username = mysqli_real_escape_string($conn, $_POST["username"]);
+$password = mysqli_real_escape_string($conn, md5($_POST["password"]));
+
+
+$check_email = mysqli_query($conn, "SELECT id FROM admins WHERE username='$username' AND password='$password'");
+if(mysqli_num_rows($check_email) > 0){
+  $row = mysqli_fetch_assoc($check_email);
+$_SESSION["user_id"]=$row['id'];
+header("Location: dash.php");
+}else{
+  echo '<script>alert("Login details not found")</script>';
+    
+}
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,13 +69,14 @@
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                     </div>
-                    <form class="user" method="post"> 
+                    <form class="" method="post"> 
                       <div class="form-group">
                         <input
                           type="text"
                           name="username"
                           class="form-control form-control-user"
                           id="username"
+                           value="<?php echo $_POST["username"]; ?>"
                           aria-describedby="emailHelp"
                           placeholder="Username"
                         />
@@ -59,6 +87,7 @@
                           name="password"
                           class="form-control form-control-user"
                           id="password"
+                          value="<?php echo $_POST["password"]; ?>"
                           placeholder="Password"
                         />
                       </div>
@@ -74,21 +103,9 @@
                           >
                         </div>
                       </div>
-                   	<button type="button" name="button" id="login" class="btn btn-primary btn-user btn-block">Login</button> 
+                   	<button type="submit" name="login" id="login" class="btn btn-primary btn-user btn-block">Login</button> 
                       <hr />
-                      <a
-                        href="login.php"
-                        class="btn btn-google btn-user btn-block"
-                      >
-                        <i class="fab fa-google fa-fw"></i> Login with Google
-                      </a>
-                      <a
-                        href="login.php"
-                        class="btn btn-facebook btn-user btn-block"
-                      >
-                        <i class="fab fa-facebook-f fa-fw"></i> Login with
-                        Facebook
-                      </a>
+                     
                     </form>
                     <hr />
                     <div class="text-center">
@@ -125,35 +142,6 @@
 			  crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
-	$(function(){
-		$('#login').click(function(e){
-
-			var valid = this.form.checkValidity();
-
-			if(valid){
-				var username = $('#username').val();
-				var password = $('#password').val();
-			}
-
-			e.preventDefault(); 
-
-			$.ajax({
-				type: 'POST',
-				url: 'jslogin.php',
-				data:  {username: username, password: password},
-				success: function(data){
-					alert(data);
-					if($.trim(data) === "login Successful"){
-						setTimeout(' window.location.href =  "dash.php"', 1000);
-					}
-				},
-				error: function(data){
-					alert('there were erros while doing the operation.');
-				}
-			});
-
-		});
-	});
-</script>
+	
   </body>
 </html>

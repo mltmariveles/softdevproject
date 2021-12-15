@@ -1,3 +1,31 @@
+<?php
+// Include config file
+require_once "config.php";
+$id = (int)$_GET['id'];
+ 
+ 
+$sql = "UPDATE residents SET FIRSTNAME=:fname,MIDNAME=:midname,FAMNAME=:lname,ALIAS=:alias,FACEMARKS=:facemarks,BIRTHDATE=:birthdate,
+SEX=:sex,CIVILSTAT=:civil,NATIONALITY=:nationality,RELIGION=:religion,OCCUPATION=:occupation,SPOUSENAME=:spouse,SPOUSEOCC=:spouseocc,VOTERSTAT:voter,BIRTHPLACE=:birthplace
+ WHERE ID=:id";
+$stmt = $db->prepare($sql);
+$stmt->bindParam(":fname", $fname);
+$stmt->bindParam(":midname", $midname);
+$stmt->bindParam(":lname", $lname);
+$stmt->bindParam(":alias", $alias);
+$stmt->bindParam(":facemarks", $facemarks);
+$stmt->bindParam(":birthdate", $birthdate);
+$stmt->bindParam(":sex", $sex);
+$stmt->bindParam(":civil", $civil);
+$stmt->bindParam(":nationality", $nationality);
+$stmt->bindParam(":religion", $religion);
+$stmt->bindParam(":occupation", $occupation);
+$stmt->bindParam(":spouse", $pspouse);
+$stmt->bindParam(":spouseocc", $spouseocc);
+$stmt->bindParam(":voter", $voter);
+$stmt->bindParam(":birthplace", $birthplace;
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,7 +38,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Admin Dashboards</title>
+    <title>Admin Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -231,7 +259,7 @@
                   aria-expanded="false"
                 >
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                    >User Log-out</span
+                    >Ivana Alawi</span
                   >
                   <img
                     class="img-profile rounded-circle"
@@ -247,7 +275,7 @@
                   "
                   aria-labelledby="userDropdown"
                 >
-                 
+                  
                   <div class="dropdown-divider"></div>
                   <a
                     class="dropdown-item"
@@ -268,13 +296,115 @@
 
           <!-- Content here -->
 
-         <div
-              class="d-sm-flex align-items-center justify-content-between mb-4"
-            >
-              <h1 class="h3 mb-0 text-gray-800">Settlement Schedule</h1>
-           
-            </div>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+              <h1 class="h3 mb-0 text-gray-800">Update Resident</h1>    
+        </div>
           <!-- content here -->
+
+        <div class="wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Please edit the input values and submit to update the employee record.</p>
+                        <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
+                            <div class="form-group">
+                                <label>Family Name</label>
+                                <input type="text" name = "lname" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" name ="fname"class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Middle Name</label>
+                                <input type="text" name ="midname" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Alias</label>
+                                <input type="text" name = "alias"class="form-control" required>
+                            </div>	
+                            <div class="form-group">
+                                            <label>Facemarks</label>
+                                            <input type="text" name = "facemarks"class="form-control" required>
+                                        </div>	
+                            <div class="form-group">
+                                <label>Sex</label>
+                                <select class ="form-select" name="sex" id="gender" required>
+                                    <option value="Male" >Male</option>
+                                    <option value="Female" >Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>	
+                            <div class="form-group">
+                                            <label>Religion</label>
+                                            <input type="text" name = "religion"class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                            <label>Nationality</label>
+                                            <input type="text" name = "nationality"class="form-control" required>
+                            </div>		
+                            <div class="form-group">
+                                            <label>Occupation</label>
+                                            <input type="text" name = "occupation"class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                            <label>Spouse Name</label>
+                                            <input type="text" name = "spouse"class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                            <label>Spouse Occupation</label>
+                                            <input type="text" name = "spouseocc"class="form-control" required>
+                                        </div>			
+                            <div class="form-group">
+                                <label>Voter Status</label>
+                                <select class ="form-select" name="voter" id="gender" required>
+                                        <option value="Yes" >Yes</option>
+                                        <option value="No" >No</option>
+                                </select>
+                            </div>	
+                            <div class="form-group">
+                                            <label>Civil Status</label>
+                                <select class ="form-select" name="civil" id="gender" required>
+                                        <option value="Single" >Single</option>
+                                        <option value="Married" >Married</option>
+                                        <option value="Widow">Widow</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                    <select name="month"class="form-select" id="select-month" required>
+                                        <option value="" disabled selected>Month</option>
+                                        <option value="1">January</option>
+                                        <option value="2">February</option>
+                                        <option value="3">March</option>
+                                        <option value="4">April</option>
+                                        <option value="5">May</option>
+                                        <option value="6">June</option>
+                                        <option value="7">July</option>
+                                        <option value="8">August</option>
+                                        <option value="9">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                        
+                                    </select>    
+                            </div>
+                            <div class="form-group">
+                                <select name ="day"class="form-select" id="select-day" required> 
+                                </select>    
+                            </div>
+                            <div class="form-group">
+                                <select name ="year"class="form-select" id="select-year" required>
+                                </select>     
+                            </div>
+                            <div class="form-group">
+                                <label>Birthplace</label>
+                                <input type="text" name = "birthplace"class="form-control" required>
+                            </div>
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                        </div>
+                    </div>        
+                </div>
+            </div>
           
 
         <!-- Footer -->
@@ -329,7 +459,7 @@
             >
               Cancel
             </button>
-            <a class="btn btn-primary" href="logout.php">Logout</a>
+            <a class="btn btn-primary" href="login.html">Logout</a>
           </div>
         </div>
       </div>

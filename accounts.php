@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user_id"])) {
+    header("Location: rename_index.php");
+}
+
+include 'configvr2.php';
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -65,7 +77,7 @@
 
         <!-- Resident Info -->
         <li class="nav-item">
-         <a class="nav-link" href="residentinfo.html">
+         <a class="nav-link" href="residentinfo.php">
             <i class="fas fa-users text-gray-100"></i>
             <span>Resident Information</span></a
           >
@@ -109,7 +121,7 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <a class="nav-link" href="accounts.html">
+          <a class="nav-link" href="accounts.php">
             <i class="fas fa-user-cog text-gray-100"></i>
             <span>Accounts</span></a
           >
@@ -157,14 +169,18 @@
             >
               <i class="fa fa-bars"></i>
             </button>
-
+  <ul class="nav flex-column">
+               <a class="navbar-brand" href="dash.php">
+      <img src="img/Barangay.png" alt="" width="60" height="60">
+    </a>
+</ul>
             <!-- Topbar Search -->
              <ul class="nav flex-column">
   <li class="nav-item">
     <h1 class="h3 mb-0 text-gray-800">Barangay Tibay</h1>
   </li>
   <li class="nav-item">
-    <h1 class="h6 mb-0 text-gray-800">United States Of America</h1>
+    <h1 class="h6 mb-0 text-gray-800">Republic of the Philippines</h1>
   </li>
  
 </ul>
@@ -227,7 +243,7 @@
                   aria-expanded="false"
                 >
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                    >Ivana Alawi</span
+                    >User Log-out</span
                   >
                   <img
                     class="img-profile rounded-circle"
@@ -243,18 +259,7 @@
                   "
                   aria-labelledby="userDropdown"
                 >
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Settings
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Activity Log
-                  </a>
+                  
                   <div class="dropdown-divider"></div>
                   <a
                     class="dropdown-item"
@@ -274,21 +279,49 @@
           <!-- End of Topbar -->
 
           <!-- Content here -->
+          <form class="user" method="post" action="">
+           <div class="row">
                              <div class="card shadow mb-4 col-sm-5 mx-5">
                                 <div class="card-header py-3 ">
-                                    <h6 class="m-0 font-weight-bold text-primary">Add New User</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Edit Profile</h6>
                                 </div>
                                 <div class="card-body">
                                   <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="password"
-                                        placeholder="Password">
+                                    <input type="text" class="form-control form-control-user" id="firstname"
+                                        placeholder="First Name" name="firstname" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="lastname"
+                                        placeholder="Last Name" name="lastname" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="middlename"
+                                        placeholder="Middle Name" name="middlename" disabled>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="username"
+                                        placeholder="Username" name="username">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="email"
+                                        placeholder="email" name="email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-user" id="password"
+                                        placeholder="Password" name="password">
                                 </div>
                                  <a href="registration.php" class="btn btn-primary btn-user btn-block">
+                                   update Information
+                                </a>
+                                <a href="logout.php" class="btn btn-google btn-user btn-block">
                                    Add New Admin
                                 </a>
                                 </div>
                             </div>
-          
+                           
+</div>
+</form>
           <!-- content here -->
           
 
@@ -344,7 +377,7 @@
             >
               Cancel
             </button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="logout.php">Logout</a>
           </div>
         </div>
       </div>

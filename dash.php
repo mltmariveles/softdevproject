@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+echo $_SESSION["user_id"];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -109,7 +117,7 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <a class="nav-link" href="accounts.html">
+          <a class="nav-link" href="accounts.php">
             <i class="fas fa-user-cog text-gray-100"></i>
             <span>Accounts</span></a
           >
@@ -159,12 +167,19 @@
             </button>
 
             <!-- Topbar Search -->
+            <ul class="nav flex-column">
+               <a class="navbar-brand" href="dash.php">
+      <img src="img/Barangay.png" alt="" width="60" height="60">
+    </a>
+</ul>
              <ul class="nav flex-column">
+               
+
   <li class="nav-item">
     <h1 class="h3 mb-0 text-gray-800">Barangay Tibay</h1>
   </li>
   <li class="nav-item">
-    <h1 class="h6 mb-0 text-gray-800">United States Of America</h1>
+    <h1 class="h6 mb-0 text-gray-800">Republic of the Philippines</h1>
   </li>
  
 </ul>
@@ -227,7 +242,7 @@
                   aria-expanded="false"
                 >
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                    >Ivana Alawi</span
+                    >User Log-out</span
                   >
                   <img
                     class="img-profile rounded-circle"
@@ -243,22 +258,11 @@
                   "
                   aria-labelledby="userDropdown"
                 >
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Settings
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Activity Log
-                  </a>
+                 
                   <div class="dropdown-divider"></div>
                   <a
                     class="dropdown-item"
-                    href="#"
+                    href="rename_index.php"
                     data-toggle="modal"
                     data-target="#logoutModal"
                   >
@@ -301,8 +305,19 @@
                         >
                           Total Registered Population
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          300
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                     <!-- Total registration change the db credentials  -->
+                                            <?php
+                                           
+$connection = mysqli_connect("localhost","root","h6HGDZsrQLJC","finals");
+$query = "SELECT ID FROM residents ORDER BY ID";
+$query_run = mysqli_query($connection, $query);
+
+$row = mysqli_num_rows($query_run);
+
+echo'<h3>'.$row.'</h3>';
+
+?>
                         </div>
                       </div>
                       <div class="col-auto">
@@ -358,7 +373,20 @@
                          Number of Males
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          18
+                          <?php
+
+//$residentmale = "SELECT STATUS FROM residents WHERE STATUS='1'";
+//$male_run = mysqli_query($connection, $residentmale);
+
+//$males = mysqli_num_rows($male_run);
+
+//echo'<h3>'.$males.'</h3>';
+
+
+
+
+
+                          ?>
                         </div>
                       </div>
                       <div class="col-auto">
@@ -550,7 +578,7 @@
             >
               Cancel
             </button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="logout.php">Logout</a>
           </div>
         </div>
       </div>
