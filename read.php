@@ -155,7 +155,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
 
         <!-- Certificate -->
         <li class="nav-item">
-          <a class="nav-link" href="certificateIssuance.html">
+          <a class="nav-link" href="certificateIssuance.php">
             <i class="fas fa-stamp text-gray-100"></i>
             <span>Certificate of Issuance</span></a
           >
@@ -340,7 +340,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                 
                 <div class="card-body">
                     <div class="col-12">
-                        <h1 class="mt-5 mb-3">View Record</h1>
+                        <h1 class="mt-5 mb-3">Resident Information</h1>
                         <div class="form-group row">
                           <div class="col-sm-4">
                             <label>Name</label>
