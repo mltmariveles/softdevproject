@@ -311,13 +311,13 @@ if (!isset($_SESSION["user_id"])) {
                      <!-- Total registration change the db credentials  -->
                                             <?php
                                            
-$connection = mysqli_connect("localhost","root","h6HGDZsrQLJC","finals");
+$connection = mysqli_connect("localhost","root","","adminaccounts");
 $query = "SELECT ID FROM residents ORDER BY ID";
 $query_run = mysqli_query($connection, $query);
 
 $row = mysqli_num_rows($query_run);
 
-echo'<h3>'.$row.'</h3>';
+echo'<h4>'.$row.'</h4>';
 
 ?>
                         </div>
@@ -347,7 +347,19 @@ echo'<h3>'.$row.'</h3>';
                          Registered Voters
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          60
+                         <?php
+
+$residentvoter = "SELECT * FROM residents WHERE VOTERSTAT ='Yes'";
+$resultvoter = mysqli_query($connection,$residentvoter);
+	$totalvoter = mysqli_num_rows($resultvoter);
+
+echo'<h3>'.$totalvoter.'</h3>';
+
+
+
+
+
+                          ?>
                         </div>
                       </div>
                       <div class="col-auto">
@@ -377,12 +389,11 @@ echo'<h3>'.$row.'</h3>';
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                           <?php
 
-//$residentmale = "SELECT STATUS FROM residents WHERE STATUS='1'";
-//$male_run = mysqli_query($connection, $residentmale);
+$residentmale = "SELECT * FROM residents WHERE SEX ='Male'";
+$result = mysqli_query($connection,$residentmale);
+	$totalmale = mysqli_num_rows($result);
 
-//$males = mysqli_num_rows($male_run);
-
-//echo'<h3>'.$males.'</h3>';
+echo'<h3>'.$totalmale.'</h3>';
 
 
 
@@ -416,7 +427,19 @@ echo'<h3>'.$row.'</h3>';
                          Number of Females
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                          18
+                                               <?php
+
+$residentfemale = "SELECT * FROM residents WHERE SEX ='Female'";
+$resultfemale = mysqli_query($connection,$residentfemale);
+	$totalfemale = mysqli_num_rows($resultfemale);
+
+echo'<h3>'.$totalfemale.'</h3>';
+
+
+
+
+
+                          ?>
                         </div>
                       </div>
                       <div class="col-auto">
