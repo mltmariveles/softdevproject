@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user_id"])) {
+    header("Location: rename_index.php");
+}
+
+include 'configvr2.php';
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -267,21 +279,49 @@
           <!-- End of Topbar -->
 
           <!-- Content here -->
+          <form class="user" method="post" action="">
+           <div class="row">
                              <div class="card shadow mb-4 col-sm-5 mx-5">
                                 <div class="card-header py-3 ">
-                                    <h6 class="m-0 font-weight-bold text-primary">Add New User</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Edit Profile</h6>
                                 </div>
                                 <div class="card-body">
                                   <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="password"
-                                        placeholder="Password">
+                                    <input type="text" class="form-control form-control-user" id="firstname"
+                                        placeholder="First Name" name="firstname" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="lastname"
+                                        placeholder="Last Name" name="lastname" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="middlename"
+                                        placeholder="Middle Name" name="middlename" disabled>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="username"
+                                        placeholder="Username" name="username">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="email"
+                                        placeholder="email" name="email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-user" id="password"
+                                        placeholder="Password" name="password">
                                 </div>
                                  <a href="registration.php" class="btn btn-primary btn-user btn-block">
+                                   update Information
+                                </a>
+                                <a href="logout.php" class="btn btn-google btn-user btn-block">
                                    Add New Admin
                                 </a>
                                 </div>
                             </div>
-          
+                           
+</div>
+</form>
           <!-- content here -->
           
 
