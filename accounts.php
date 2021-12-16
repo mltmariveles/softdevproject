@@ -357,7 +357,7 @@ if(mysqli_num_rows($result)>0){
                                  <button type="submit" name="submit" class="btn btn-primary btn-user btn-block">
                                    Update Information
                                 </button>
-                                <a href="addadmin.php" class="btn btn-google btn-user btn-block">
+                                <a href="registration.php" class="btn btn-google btn-user btn-block">
                                    Add New Admin
                                 </a>
                                 </div>
