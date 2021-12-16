@@ -1,10 +1,9 @@
 <?php 
 session_start();
 if (!isset($_SESSION["user_id"])) {
-    header("Location: rename_index.php");
+    header("Location: index.php");
 }
 
-include 'configvr2.php';
 require_once "config.php";
 
 $fname = $midname = $lname = $alias = $gender = $birthdate = $civilstatus = $voterstatus = "" ;

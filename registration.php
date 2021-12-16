@@ -1,14 +1,6 @@
 <?php
 
-include 'configvr2.php';
-session_start();
-error_reporting(0);
-
-if (!isset($_SESSION["user_id"])) {
-    header("Location: rename_index.php");
-}
-
-
+include 'config.php';
 
 
 if(isset($_POST["submit"])){
@@ -146,7 +138,7 @@ echo '<script>alert("Email Already Exist")</script>';
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <script src="app.js"></script>
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></>
+    <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->

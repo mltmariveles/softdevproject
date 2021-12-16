@@ -1,6 +1,6 @@
 <<?php
 
-include 'configvr2.php';
+include 'config.php';
 session_start();
 error_reporting(0);
 if (isset($_SESSION["user_id"])) {
@@ -114,7 +114,7 @@ header("Location: dash.php");
                       >
                     </div>
                     <div class="text-center">
-                      <a class="small" href="register.php"
+                      <a class="small" href="registration.php"
                         >Create an Account!</a
                       >
                     </div>
