@@ -1,7 +1,12 @@
 <?php
 
-include 'config.php';
+include 'configvr2.php';
+session_start();
+error_reporting(0);
 
+if (!isset($_SESSION["user_id"])) {
+    header("Location: rename_index.php");
+}
 
 if(isset($_POST["submit"])){
 $firstname = mysqli_real_escape_string($conn, $_POST["firstname"]);
@@ -115,7 +120,7 @@ echo '<script>alert("Email Already Exist")</script>';
                                     </div>
                                 </div>
                                 	<button type="submit" name="submit"   class="btn btn-primary btn-user btn-block">Add New User</button> 
-                                    <a href="rename_index.php"  class="btn btn-google btn-user btn-block">Log-In</a> 
+                                    <a href="index.php"  class="btn btn-google btn-user btn-block">Log-In</a> 
                                     
                                 <hr>
                               

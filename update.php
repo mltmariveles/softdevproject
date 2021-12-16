@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["user_id"])) {
-    header("Location: rename_index.php");
+    header("Location: index.php");
 
 }
 // Include config file
@@ -395,6 +395,19 @@ $stmt->bindParam(":birthplace", $birthplace);
                             </div>
                             <div class="form-group">
                                 <select name ="day"class="form-select" id="select-day" required> 
+                                  option value="" disabled selected>Month</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
                                 </select>    
                             </div>
                             <div class="form-group">

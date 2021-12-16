@@ -10,7 +10,7 @@ if (!isset($_SESSION["user_id"])) {
 
 
 
-include 'config.php' ?>
+include 'configvr2.php';
 <?php
 $id = $_GET['id'];
 $query = "SELECT * FROM tblresident WHERE id='$id'";

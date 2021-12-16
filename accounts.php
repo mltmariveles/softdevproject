@@ -4,7 +4,7 @@ if (!isset($_SESSION["user_id"])) {
     header("Location: index.php");
 }
 
-include 'config.php';
+include 'configvr2.php';
 if(isset($_POST["submit"])){
   $username = mysqli_real_escape_string($conn, $_POST["username"]);
   $email = mysqli_real_escape_string($conn, $_POST["email"]);

@@ -4,7 +4,7 @@ if (!isset($_SESSION["user_id"])) {
     header("Location: index.php");
 }
 
-include 'config.php';
+include 'configvr2.php';
 
 ?>
 

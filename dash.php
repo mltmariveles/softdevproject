@@ -264,7 +264,7 @@ if (!isset($_SESSION["user_id"])) {
                   <div class="dropdown-divider"></div>
                   <a
                     class="dropdown-item"
-                    href="rename_index.php"
+                    href="index.php"
                     data-toggle="modal"
                     data-target="#logoutModal"
                   >
