@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (!isset($_SESSION["user_id"])) {
+    header("Location: index.php");
+}
+
+include 'configvr2.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -259,7 +269,7 @@
                     echo "<td>" . $row['SPOUSENAME'] . "</td>";
                     echo "<td>" . $row['SPOUSEOCC'] . "</td>";
                     echo "<td>";
-                    echo '<a href="generate_certificate.php">Certificate of Clearance</a>';
+                    echo '<a href="generate_certificate.php?id='. $row['ID'] .'">Certificate of Clearance</a>';
                     echo "<td>";
                     echo "</td>";
                     echo "</tr>";

@@ -163,7 +163,7 @@ if (isset($_POST['fname'],$_POST['midname'],$_POST['lname'],$_POST['alias'],$_PO
 
         <!-- Certificate -->
         <li class="nav-item">
-          <a class="nav-link" href="certificateIssuance.php">
+          <a class="nav-link" href="table-certificateIssuance.php">
             <i class="fas fa-stamp text-gray-100"></i>
             <span>Certificate of Issuance</span></a
           >

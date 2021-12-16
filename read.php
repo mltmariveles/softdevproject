@@ -162,7 +162,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
 
         <!-- Certificate -->
         <li class="nav-item">
-          <a class="nav-link" href="certificateIssuance.php">
+          <a class="nav-link" href="table-certificateIssuance.php">
             <i class="fas fa-stamp text-gray-100"></i>
             <span>Certificate of Issuance</span></a
           >
