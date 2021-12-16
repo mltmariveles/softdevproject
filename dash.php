@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 
@@ -105,7 +104,7 @@ if (!isset($_SESSION["user_id"])) {
 
         <!-- Certificate -->
         <li class="nav-item">
-          <a class="nav-link" href="certificateIssuance.php">
+          <a class="nav-link" href="table-certificateIssuance.php">
             <i class="fas fa-stamp text-gray-100"></i>
             <span>Certificate of Issuance</span></a
           >
@@ -311,7 +310,7 @@ if (!isset($_SESSION["user_id"])) {
                      <!-- Total registration change the db credentials  -->
                                             <?php
                                            
-$connection = mysqli_connect("localhost","root","","adminaccounts");
+$connection = mysqli_connect("localhost","root","h6HGDZsrQLJC","finals");
 $query = "SELECT ID FROM residents ORDER BY ID";
 $query_run = mysqli_query($connection, $query);
 
