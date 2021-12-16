@@ -1,43 +1,48 @@
 <?php
 
-require_once "config.php";
 
-$fname = $midname = $lname = $alias = $gender = $birthdate = $civilstatus = $voterstatus = "";
+if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
+    // Include config file
+    require_once "config.php";
+    
+    // Prepare a select statement
+    $sql = "SELECT NAME,BIRTHPLACE,CIVILSTAT,NATIONALITY FROM residents WHERE ID = :id";
+    
+    if($stmt = $db->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":id", $param_id);
+        
+        // Set parameters
+        $param_id = trim($_GET["id"]);
+        
+        // Attempt to execute the prepared statement
+        if($stmt->execute()){
+            if($stmt->rowCount() == 1){
+                /* Fetch result row as an associative array. Since the result set
+                contains only one row, we don't need to use while loop */
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                
+                // Retrieve individual field value
+                $name = $row["NAME"];
+                $civil = $row["CIVILSTAT"];
+                $nationality = $row["NATIONALITY"];
 
-if (isset($_POST['fname'], $_POST['midname'], $_POST['lname'], $_POST['alias'], $_POST['sex'], $_POST['month'], $_POST['day'], $_POST['year'], $_POST['civil'], $_POST['voter'])) {
-
-    $fname = $_POST['fname'];
-    $midname = $_POST['midname'];
-    $lname = $_POST['lname'];
-    $name = $lname . " " . $fname . " " . $midname;
-    $alias = $_POST['alias'];
-    $facemarks = $_POST['facemarks'];
-    $sex = $_POST['sex'];
-    $month = $_POST['month'];
-    $day = $_POST['day'];
-    $year = $_POST['year'];
-    $birthdate = $year . $month . $day;
-    $birthplace = $_POST['birthplace'];
-    $civilstatus = $_POST['civil'];
-    $voterstatus = $_POST['voter'];
-    $nationality = $_POST['nationality'];
-    $religion = $_POST['religion'];
-    $occupation = $_POST['occupation'];
-    $spouse_name = $_POST['spouse'];
-    $spouse_occ = $_POST['spouseocc'];
-    $birthdate = date('Y-m-d', strtotime(str_replace('-', '/', $birthdate)));
-
-
-    //SQL STATEMENT
-
-    $sql = "INSERT INTO residents (NAME,FAMNAME,FIRSTNAME,MIDNAME,ALIAS,FACEMARKS,BIRTHDATE,BIRTHPLACE,SEX,CIVILSTAT,NATIONALITY,RELIGION,OCCUPATION,SPOUSENAME,SPOUSEOCC,VOTERSTAT) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    $stmtinsert = $db->prepare($sql);
-    $result = $stmtinsert->execute([$name, $lname, $fname, $midname, $alias, $facemarks, $birthdate, $birthplace, $sex, $civilstatus, $nationality, $religion, $occupation, $spouse_name, $spouse_occ, $voterstatus]);
-    if ($result) {
-        echo 'Successfully saved';
-    } else {
-        echo 'There were errors while saving the data';
+            } else{
+                // URL doesn't contain valid id parameter. Redirect to error page
+                header("location: error.php");
+                exit();
+            }
+            
+        } else{
+            echo "Oops! Something went wrong. Please try again later.";
+        }
     }
+     
+    // Close statement
+    unset($stmt);
+    
+    // Close connection
+    unset($db);
 }
 ?>
 <!DOCTYPE html>
@@ -135,8 +140,11 @@ if (isset($_POST['fname'], $_POST['midname'], $_POST['lname'], $_POST['alias'], 
                                                 <div class="text-center">
                                                     <h1 class="mt-4 fw-bold mb-5">BARANGAY CLEARANCE</h1>
                                                 </div>
-                                                <h2 class="mt-3" style="text-indent: 40px;">This is to certify <span class="fw-bold" style="font-size:25px"><?= (isset($_POST['fname'], $_POST['midname'], $_POST['lname'], $_POST['alias'], $_POST['sex'], $_POST['month'], $_POST['day'], $_POST['year'], $_POST['civil'], $_POST['voter'])) ?></span>, that is a permanent resident of
-                                                    <span class="fw-bold" style="font-size:25px"></span> and that he/she is known to me to be of good moral character.
+                                                <h2 class="mt-3" style="text-indent: 40px;">This is to certify <?php echo $name?><span class="fw-bold" style="font-size:25px"></span>, of legal age,<?php echo $civil?>, <?php echo $nationality?> Citizen whose
+                                                    <span class="fw-bold" style="font-size:25px"></span> specimen signature appears below is a <b>PERMANENT RESIDENT</b> of this Barangay Tibay, Muntinlupa, Metro Mnila.
+                                                </h2>
+                                                <h2>
+                                                    Based on records of this office, he/she has been residing at Barangay Tibay, Muntinlupa, Metro Manila.
                                                 </h2>
                                                 <h2 class="mt-3" style="text-indent: 40px;">This certification/clearance is hereby issued to the above-named person for whatever legal purpose it may serve him/her best.</h2>
                                                 <h2 class="mt-5">Given this <span class="fw-bold" style="font-size:25px"><?= date('m/d/Y') ?>.</span></h2>

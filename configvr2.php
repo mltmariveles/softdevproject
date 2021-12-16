@@ -2,8 +2,8 @@
 
 $hostname ="localhost";
 $username = "root";
-$password = "h6HGDZsrQLJC";
-$database = "finals";
+$password = "";
+$database = "final";
 
 $conn = mysqli_connect($hostname, $username, $password, $database) or die("failed");
 

@@ -316,7 +316,7 @@ include 'configvr2.php';
                                         echo "<td>" . $row['ID'] . "</td>";
                                         echo "<td>" . $row['NAME'] . "</td>";
                                         echo "<td>";
-                                            echo '<a href="#">View Certificate</a>'; 
+                                            echo '<a href="generate_certificate.php?id='. $row['ID'] .'">View Certificate</a>'; 
                                         echo "</td>";
                                     echo "</tr>";
                                 }

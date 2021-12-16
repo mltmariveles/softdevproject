@@ -30,7 +30,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                 
                 // Retrieve individual field value
                 $name = $row["NAME"];
-                $address = $row["ALIAS"];
+                $alias = $row["ALIAS"];
                 $facemarks = $row["FACEMARKS"];
                 $birthdte = $row["BIRTHDATE"];
                 $sex = $row["SEX"];
