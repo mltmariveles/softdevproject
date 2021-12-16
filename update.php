@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION["user_id"])) {
+    header("Location: index.php");
+
+}
 // Include config file
 require_once "config.php";
 $id = (int)$_GET['id'];
@@ -22,7 +27,7 @@ $stmt->bindParam(":occupation", $occupation);
 $stmt->bindParam(":spouse", $pspouse);
 $stmt->bindParam(":spouseocc", $spouseocc);
 $stmt->bindParam(":voter", $voter);
-$stmt->bindParam(":birthplace", $birthplace;
+$stmt->bindParam(":birthplace", $birthplace);
 ?>
 
 
@@ -101,7 +106,7 @@ $stmt->bindParam(":birthplace", $birthplace;
 
         <!-- Blotter Records -->
         <li class="nav-item">
-          <a class="nav-link" href="blotterrecords.html">
+          <a class="nav-link" href="blotterrecords.php">
             <i class="fas fa-clipboard text-gray-100"></i>
             <span>Blotter Records</span></a
           >
@@ -123,7 +128,7 @@ $stmt->bindParam(":birthplace", $birthplace;
 
         <!-- Certificate -->
         <li class="nav-item">
-          <a class="nav-link" href="certificateIssuance.html">
+          <a class="nav-link" href="certificateIssuance.php">
             <i class="fas fa-stamp text-gray-100"></i>
             <span>Certificate of Issuance</span></a
           >
@@ -144,7 +149,7 @@ $stmt->bindParam(":birthplace", $birthplace;
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="barangayconfig.html">
+          <a class="nav-link" href="barangayconfig.php">
             <i class="fas fa-cogs text-gray-100"></i>
             <span>Barangay Config</span></a
           >
@@ -390,6 +395,19 @@ $stmt->bindParam(":birthplace", $birthplace;
                             </div>
                             <div class="form-group">
                                 <select name ="day"class="form-select" id="select-day" required> 
+                                  option value="" disabled selected>Month</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
                                 </select>    
                             </div>
                             <div class="form-group">

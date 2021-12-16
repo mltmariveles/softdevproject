@@ -1,12 +1,28 @@
 <?php
 session_start();
-
 if (!isset($_SESSION["user_id"])) {
-    header("Location: rename_index.php");
+    header("Location: index.php");
 }
 
 include 'configvr2.php';
+if(isset($_POST["submit"])){
+  $username = mysqli_real_escape_string($conn, $_POST["username"]);
+  $email = mysqli_real_escape_string($conn, $_POST["email"]);
+  $password = mysqli_real_escape_string($conn, md5($_POST["password"]));
+   $pwdrepeat = mysqli_real_escape_string($conn, md5($_POST["pwdrepeat"]));
 
+   if($password === $pwdrepeat){
+$sql = "UPDATE admins SET username='$username', email='$email', password='$password' WHERE id='{$_SESSION["user_id"]}'";
+$result = mysqli_query($conn, $sql);
+if($result){
+echo '<script>alert("Admin Information Updated Successfully")</script>';
+}else{
+echo '<script>alert("Admin Information Updated Unsuccessfully")</script>';
+}
+   }else{
+     echo '<script>alert("The password did not match!")</script>';
+   }
+}
 ?>
 
 
@@ -50,7 +66,7 @@ include 'configvr2.php';
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="dash.html"
+          href="dash.php"
         >
           <div class="sidebar-brand-icon">
             <i class="fas fa-balance-scale"></i>
@@ -63,7 +79,7 @@ include 'configvr2.php';
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-          <a class="nav-link" href="dash.html">
+          <a class="nav-link" href="dash.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a
           >
@@ -85,7 +101,7 @@ include 'configvr2.php';
 
         <!-- Blotter Records -->
         <li class="nav-item">
-          <a class="nav-link" href="blotterrecords.html">
+          <a class="nav-link" href="blotterrecords.php">
             <i class="fas fa-clipboard text-gray-100"></i>
             <span>Blotter Records</span></a
           >
@@ -107,7 +123,7 @@ include 'configvr2.php';
 
         <!-- Certificate -->
         <li class="nav-item">
-          <a class="nav-link" href="certificateIssuance.html">
+          <a class="nav-link" href="certificateIssuance.php">
             <i class="fas fa-stamp text-gray-100"></i>
             <span>Certificate of Issuance</span></a
           >
@@ -128,7 +144,7 @@ include 'configvr2.php';
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="barangayconfig.html">
+          <a class="nav-link" href="barangayconfig.php">
             <i class="fas fa-cogs text-gray-100"></i>
             <span>Barangay Config</span></a
           >
@@ -280,41 +296,68 @@ include 'configvr2.php';
 
           <!-- Content here -->
           <form class="user" method="post" action="">
-           <div class="row">
+             <div class="row justify-content-center">
                              <div class="card shadow mb-4 col-sm-5 mx-5">
-                                <div class="card-header py-3 ">
-                                    <h6 class="m-0 font-weight-bold text-primary">Edit Profile</h6>
+                               <div class="card-header py-3 ">
+                                  <h6 class="m-0 font-weight-bold text-primary">Edit Profile</h6>
                                 </div>
-                                <div class="card-body">
-                                  <div class="form-group">
+                                 <div class="card-body">
+            <?php
+$sql = "SELECT * FROM admins WHERE id='{$_SESSION["user_id"]}' ";
+$result = mysqli_query($conn, $sql);
+if(mysqli_num_rows($result)>0){
+
+  while($row = mysqli_fetch_assoc($result)){
+    ?>
+     <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="firstname"
-                                        placeholder="First Name" name="firstname" disabled>
+                                        placeholder="First Name" name="firstname" value="<?php echo $row['firstname']?>"disabled>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="lastname"
-                                        placeholder="Last Name" name="lastname" disabled>
+                                        placeholder="Last Name" name="lastname"  value="<?php echo $row['lastname']?>" disabled>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="middlename"
-                                        placeholder="Middle Name" name="middlename" disabled>
+                                        placeholder="Middle Name" name="middlename"  value="<?php echo $row['middlename']?>" disabled>
                                 </div>
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="username"
-                                        placeholder="Username" name="username">
+                  <div class="form-group row">
+                                <div div class="col-sm-6">
+                                     <input type="text" class="form-control form-control-user" id="username"
+                                        placeholder="Username" name="username"  value="<?php echo $row['username']?>">
                                 </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="email"
-                                        placeholder="email" name="email">
+                                  <div div class="col-sm-6">
+                                   <input type="email" class="form-control form-control-user" id="email"
+                                        placeholder="email" name="email" value="<?php echo $row['email']?>">
                                 </div>
-                                <div class="form-group">
+  </div>
+                          
+                                <div class="form-group row">
+                                <div div class="col-sm-6">
                                     <input type="password" class="form-control form-control-user" id="password"
-                                        placeholder="Password" name="password">
+                                        placeholder="Password" name="password" required>
                                 </div>
-                                 <a href="registration.php" class="btn btn-primary btn-user btn-block">
-                                   update Information
-                                </a>
-                                <a href="logout.php" class="btn btn-google btn-user btn-block">
+                                  <div div class="col-sm-6">
+                                    <input type="password" class="form-control form-control-user" id="pwdrepeat"
+                                        placeholder="Confirm Password" name="pwdrepeat" required>
+                                </div>
+  </div>
+
+    <?php
+  }
+}
+?>
+
+
+          
+                                
+                                   
+                                
+                                 
+                                 <button type="submit" name="submit" class="btn btn-primary btn-user btn-block">
+                                   Update Information
+                                </button>
+                                <a href="registration.php" class="btn btn-google btn-user btn-block">
                                    Add New Admin
                                 </a>
                                 </div>

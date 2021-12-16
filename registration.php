@@ -3,8 +3,9 @@
 include 'configvr2.php';
 session_start();
 error_reporting(0);
-if (isset($_SESSION["user_id"])) {
-    header("Location: dash.php");
+
+if (!isset($_SESSION["user_id"])) {
+    header("Location: rename_index.php");
 }
 
 if(isset($_POST["submit"])){
@@ -119,7 +120,7 @@ echo '<script>alert("Email Already Exist")</script>';
                                     </div>
                                 </div>
                                 	<button type="submit" name="submit"   class="btn btn-primary btn-user btn-block">Add New User</button> 
-                                    <a href="rename_index.php"  class="btn btn-google btn-user btn-block">Log-In</a> 
+                                    <a href="index.php"  class="btn btn-google btn-user btn-block">Log-In</a> 
                                     
                                 <hr>
                               
@@ -142,7 +143,7 @@ echo '<script>alert("Email Already Exist")</script>';
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <script src="app.js"></script>
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></>
+    <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->

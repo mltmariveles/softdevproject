@@ -1,4 +1,11 @@
 <?php
+
+session_start();
+if (!isset($_SESSION["user_id"])) {
+    header("Location: index.php");
+}
+
+include 'configvr2.php';
 // Check existence of id parameter before processing further
 if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
     // Include config file
@@ -133,7 +140,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
 
         <!-- Blotter Records -->
         <li class="nav-item">
-          <a class="nav-link" href="blotterrecords.html">
+          <a class="nav-link" href="blotterrecords.php">
             <i class="fas fa-clipboard text-gray-100"></i>
             <span>Blotter Records</span></a
           >
@@ -176,7 +183,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="barangayconfig.html">
+          <a class="nav-link" href="barangayconfig.php">
             <i class="fas fa-cogs text-gray-100"></i>
             <span>Barangay Config</span></a
           >
