@@ -58,6 +58,7 @@ $stmt->bindParam(":birthplace", $birthplace);
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   </head>
 
   <body id="page-top">
@@ -498,6 +499,7 @@ $stmt->bindParam(":birthplace", $birthplace);
 
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
+    <script src="residentinfo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
   </body>
 </html>
